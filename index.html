@@ -1,344 +1,507 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RYL8T6FHVL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RYL8T6FHVL');</script>
+<!-- End Google Analytics -->
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>FAHAD.AI — مُحوّل الأوامر الخارقة</title>
-<meta name="description" content="حوّل أي طلب بسيط إلى أمر خارق (Super Prompt) — ٢٠ تصنيف ذكي — مجاناً">
-<meta property="og:title" content="FAHAD.AI v3.5 — مُحوّل الأوامر الخارقة">
+<meta name="description" content="حوّل أي طلب بسيط إلى أمر خارق (Super Prompt) جاهز للصق في ChatGPT أو Claude. مجاناً.">
+<meta property="og:title" content="FAHAD.AI — مُحوّل الأوامر الخارقة">
+<meta property="og:description" content="حوّل كلامك البسيط إلى أوامر خارقة للذكاء الاصطناعي — مجاناً">
+<meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FAHAD.AI — مُحوّل الأوامر الخارقة">
+<meta name="twitter:description" content="حوّل كلامك البسيط إلى أوامر خارقة للذكاء الاصطناعي — مجاناً">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<meta name="theme-color" content="#08080f">
 <style>
 :root{
---ac:#fbbf24;--ac2:#f59e0b;--bg:#08080f;--bg2:#111119;--bg3:#0a0a14;
---brd:#1e1e2e;--tx:#fff;--tx2:#bbb;--tx3:#888;--tx4:#555;--tx5:#333;
---glow:rgba(251,191,36,.12);--glow2:rgba(99,102,241,.08);
+  --ar:251;--ag:191;--ab:36;
+  --a1:#fbbf24;--a2:#f59e0b;--a3:#d97706;--al:#fcd34d;
+  --bg:#07080f;--bg-card:#0d0e1a;--bg-input:#08090f;--bg-top:rgba(7,8,15,.88);
+  --bg-out:#050610;--bg-out-b:#10102a;--bg-dis:#0f1020;--bg-rate:#0b0c1a;--bg-sc:#0e0f1e;
+  --border:#181828;--bd-deep:#111128;--bd-rate:#1e1e38;
+  --text:#dde0f0;--dim:#50506a;--muted:#20203a;--dis:#2e2e50;--faint:#181828;--plat:#252540;
+  --scr:#1e1e38;--scr-h:#2e2e50;--shc:#666;--ob:#e2e8f0;
 }
-.light{--bg:#f5f5f7;--bg2:#fff;--bg3:#f0f0f2;--brd:#e0e0e5;--tx:#111;--tx2:#444;--tx3:#666;--tx4:#999;--tx5:#ccc;--glow:rgba(251,191,36,.08);--glow2:rgba(99,102,241,.05)}
-.theme-blue{--ac:#3b82f6;--ac2:#2563eb}
-.theme-green{--ac:#22c55e;--ac2:#16a34a}
-.theme-purple{--ac:#a855f7;--ac2:#9333ea}
-.theme-red{--ac:#ef4444;--ac2:#dc2626}
-.theme-cyan{--ac:#06b6d4;--ac2:#0891b2}
+[data-mode="light"]{
+  --bg:#f2f3f9;--bg-card:#ffffff;--bg-input:#eaecf6;--bg-top:rgba(242,243,249,.92);
+  --bg-out:#f6f7fe;--bg-out-b:#dde2f0;--bg-dis:#e4e8f4;--bg-rate:#eaecf6;--bg-sc:#eaecf6;
+  --border:#dde2f0;--bd-deep:#e4e8f5;--bd-rate:#c8d0e8;
+  --text:#1a1c2e;--dim:#6a7290;--muted:#b0bcd4;--dis:#8898b8;--faint:#9aaac0;--plat:#8898b8;
+  --scr:#c8d0e8;--scr-h:#aab4d0;--shc:#888;--ob:#1a1c2e;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);font-family:system-ui,-apple-system,sans-serif;color:var(--tx);direction:rtl;min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s}
-.g1{position:fixed;top:-120px;right:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);pointer-events:none}
-.g2{position:fixed;bottom:-100px;left:-60px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,var(--glow2) 0%,transparent 70%);pointer-events:none}
-.top{background:color-mix(in srgb,var(--ac) 4%,var(--bg));border-bottom:1px solid color-mix(in srgb,var(--ac) 10%,var(--bg));padding:8px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);gap:8px;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:6px}
-.logo span:first-child{font-size:16px}
-.logo span:last-child{font-size:14px;font-weight:800;color:var(--ac);letter-spacing:1px}
-.top-controls{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.top-btn{background:var(--bg2);border:1px solid var(--brd);border-radius:8px;padding:5px 10px;font-size:11px;color:var(--tx3);cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:4px}
-.top-btn:active{transform:scale(.95)}
-.top-btn.active{background:color-mix(in srgb,var(--ac) 15%,var(--bg));border-color:color-mix(in srgb,var(--ac) 30%,var(--bg));color:var(--ac)}
-.color-dot{width:14px;height:14px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s}
-.color-dot.sel{border-color:var(--tx);transform:scale(1.2)}
-.colors-row{display:flex;gap:5px;align-items:center}
-.mn{padding:20px 16px 40px;position:relative;z-index:2;max-width:640px;margin:0 auto}
-.hero{text-align:center;margin-bottom:18px}
-.hi{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 8px 32px color-mix(in srgb,var(--ac) 30%,transparent);font-size:30px;transition:background .3s}
-.hero h1{font-size:20px;font-weight:800;color:var(--tx);line-height:1.4;margin-bottom:3px}
-.hero h2{font-size:20px;font-weight:800;color:var(--ac);line-height:1.4;margin-bottom:6px;transition:color .3s}
-.hero p{font-size:12px;color:var(--tx4)}
-.vb{display:inline-block;background:color-mix(in srgb,var(--ac) 10%,var(--bg));border:1px solid color-mix(in srgb,var(--ac) 20%,var(--bg));border-radius:16px;padding:3px 10px;font-size:10px;color:var(--ac);font-weight:700;margin-top:6px}
-.sb{display:flex;justify-content:center;gap:16px;margin-bottom:14px;padding:6px 0}
-.si{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--tx4)}
-.sn{color:var(--ac);font-weight:800;font-size:12px}
-/* Lang Toggle */
-.lang-toggle{display:flex;justify-content:center;gap:0;margin-bottom:14px}
-.lt-btn{padding:8px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;border:1px solid var(--brd);background:var(--bg2);color:var(--tx3);transition:all .2s}
-.lt-btn:first-child{border-radius:0 10px 10px 0}
-.lt-btn:last-child{border-radius:10px 0 0 10px}
-.lt-btn.active{background:var(--ac);color:#000;border-color:var(--ac)}
-/* Cats */
-.cw{margin-bottom:14px}
-.ct{font-size:11px;color:var(--tx4);text-align:center;margin-bottom:6px}
-.cs{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
-.cb2{background:color-mix(in srgb,var(--tx) 3%,var(--bg));border:1px solid color-mix(in srgb,var(--tx) 6%,var(--bg));border-radius:14px;padding:4px 10px;font-size:10px;color:var(--tx4);cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:3px}
-.cb2:active{transform:scale(.95)}
-.cb2.active{background:color-mix(in srgb,var(--ac) 12%,var(--bg));border-color:color-mix(in srgb,var(--ac) 25%,var(--bg));color:var(--ac)}
-.ex{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:14px}
-.eb{background:color-mix(in srgb,var(--ac) 6%,var(--bg));border:1px solid color-mix(in srgb,var(--ac) 12%,var(--bg));border-radius:14px;padding:4px 10px;color:color-mix(in srgb,var(--ac) 60%,var(--tx3));font-size:10px;cursor:pointer;font-family:inherit;transition:all .2s}
-.eb:active{transform:scale(.97)}
-.cd{background:var(--bg2);border:1px solid var(--brd);border-radius:14px;padding:14px;margin-bottom:14px;transition:background .3s,border-color .3s}
-.cl{display:flex;align-items:center;gap:6px;margin-bottom:8px}
-.cd3{width:6px;height:6px;border-radius:50%;background:var(--ac)}
-.cl span{font-size:11px;color:var(--tx3);font-weight:600}
-textarea{width:100%;background:var(--bg3);border:1px solid var(--brd);border-radius:10px;padding:12px;color:var(--tx);font-size:15px;font-family:inherit;resize:none;direction:rtl;line-height:1.8;height:80px;outline:none;transition:all .3s}
-textarea:focus{border-color:color-mix(in srgb,var(--ac) 40%,var(--bg))}
-textarea::placeholder{color:var(--tx5)}
-.gb{width:100%;margin-top:10px;border:none;border-radius:10px;padding:13px 0;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;transition:all .2s}
-.gb.a{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#000;box-shadow:0 4px 20px color-mix(in srgb,var(--ac) 25%,transparent)}
-.gb.a:active{transform:scale(.98)}
-.gb.d{background:var(--brd);color:var(--tx4);cursor:not-allowed}
-.rc{background:var(--bg2);border:1px solid color-mix(in srgb,var(--ac) 15%,var(--bg));border-radius:14px;padding:14px;margin-bottom:14px;display:none;transition:all .3s}
-.rc.show{display:block;animation:fu .4s ease}
-.rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.rt{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--ac)}
-.cpb{background:var(--brd);border:1px solid color-mix(in srgb,var(--tx) 8%,var(--bg));border-radius:8px;padding:6px 14px;color:var(--tx3);font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;transition:all .2s}
-.cpb.cp{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.3);color:#4ade80}
-.tg{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
-.t{border-radius:6px;padding:2px 8px;font-size:10px;font-weight:600}
-.tc{background:color-mix(in srgb,var(--ac) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--ac) 15%,var(--bg));color:var(--ac)}
-.tl{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);color:#818cf8}
-.tp{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.15);color:#4ade80}
-.po{background:var(--bg3);border-radius:10px;padding:14px;color:var(--tx2);font-size:12px;line-height:2.2;white-space:pre-wrap;direction:rtl;max-height:400px;overflow-y:auto;border:1px solid color-mix(in srgb,var(--tx) 4%,var(--bg));transition:all .3s}
-.po::-webkit-scrollbar{width:4px}
-.po::-webkit-scrollbar-thumb{background:var(--brd);border-radius:2px}
-.rs{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;padding:12px 0;border-top:1px solid var(--brd)}
-.rl{font-size:11px;color:var(--tx4)}
-.rb{width:40px;height:40px;border-radius:10px;border:1px solid var(--brd);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all .2s}
-.rb:active{transform:scale(.9)}
-.rb.vu{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.3)}
-.rb.vd{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.3)}
-.rcc{font-size:10px;color:var(--tx5);margin-top:2px;text-align:center}
-.ss{margin-top:12px;padding-top:12px;border-top:1px solid var(--brd)}
-.ssl{font-size:11px;color:var(--tx4);text-align:center;margin-bottom:8px}
-.sbs{display:flex;gap:6px;justify-content:center}
-.sb3{flex:1;max-width:120px;display:flex;align-items:center;justify-content:center;gap:4px;padding:9px 0;border-radius:10px;border:none;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s}
-.sb3:active{transform:scale(.96)}
-.stw{background:#1d9bf0;color:#fff}
-.swa{background:#25d366;color:#fff}
-.scp2{background:var(--brd);color:var(--tx3);border:1px solid color-mix(in srgb,var(--tx) 8%,var(--bg))}
-.ps{text-align:center;margin-top:12px}
-.ps p{color:var(--tx5);font-size:10px;margin-bottom:4px}
-.pl{display:flex;justify-content:center;gap:12px}
-.pl span{font-size:9px;color:var(--tx5)}
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ac);color:#000;padding:10px 22px;border-radius:10px;font-size:12px;font-weight:700;z-index:100;transition:transform .3s ease;pointer-events:none}
+body{background:var(--bg);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--text);direction:rtl;min-height:100vh;min-height:100dvh;overflow-x:hidden;transition:background .3s,color .3s}
+
+.glow1{position:fixed;top:-180px;right:-100px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(var(--ar),var(--ag),var(--ab),.08) 0%,transparent 65%);pointer-events:none;z-index:0;animation:glowPulse 7s ease-in-out infinite}
+.glow2{position:fixed;bottom:-140px;left:-80px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(var(--ar),var(--ag),var(--ab),.04) 0%,transparent 65%);pointer-events:none;z-index:0;animation:glowPulse 9s ease-in-out infinite reverse}
+.glow3{position:fixed;top:45%;left:50%;transform:translateX(-50%);width:700px;height:180px;background:radial-gradient(ellipse,rgba(var(--ar),var(--ag),var(--ab),.03) 0%,transparent 70%);pointer-events:none;z-index:0}
+@keyframes glowPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.1)}}
+
+.topbar{background:var(--bg-top);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);transition:background .3s,border-color .3s}
+.topbar-logo{display:flex;align-items:center;gap:8px}
+.topbar-logo span:first-child{font-size:18px}
+.topbar-logo span:last-child{font-size:15px;font-weight:800;letter-spacing:1.5px;background:linear-gradient(90deg,var(--a1),var(--al));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.topbar-ver{font-size:10px;color:var(--dim);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:2px 9px;border-radius:20px}
+
+.theme-switcher{display:flex;align-items:center;gap:5px;background:rgba(128,128,128,.06);border:1px solid var(--border);padding:5px 8px;border-radius:20px}
+.theme-dot{width:14px;height:14px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .22s;opacity:.55;flex-shrink:0}
+.theme-dot:hover{opacity:1;transform:scale(1.25)}
+.theme-dot.active{border-color:rgba(255,255,255,.8);opacity:1;transform:scale(1.2)}
+[data-mode="light"] .theme-dot.active{border-color:rgba(0,0,0,.4)}
+.mode-btn{width:32px;height:32px;border-radius:10px;border:1px solid var(--border);background:rgba(128,128,128,.06);color:var(--dim);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;font-family:inherit}
+.mode-btn:hover{background:rgba(var(--ar),var(--ag),var(--ab),.1);color:var(--a1);border-color:rgba(var(--ar),var(--ag),var(--ab),.3)}
+
+.main{padding:28px 16px 52px;position:relative;z-index:2;max-width:620px;margin:0 auto}
+
+.hero{text-align:center;margin-bottom:30px}
+.hero-icon{width:74px;height:74px;border-radius:22px;background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 8px 44px rgba(var(--ar),var(--ag),var(--ab),.38),0 0 0 1px rgba(var(--ar),var(--ag),var(--ab),.18);font-size:34px;animation:iconFloat 4s ease-in-out infinite}
+@keyframes iconFloat{0%,100%{transform:translateY(0);box-shadow:0 8px 44px rgba(var(--ar),var(--ag),var(--ab),.38),0 0 0 1px rgba(var(--ar),var(--ag),var(--ab),.18)}50%{transform:translateY(-5px);box-shadow:0 18px 56px rgba(var(--ar),var(--ag),var(--ab),.5),0 0 0 1px rgba(var(--ar),var(--ag),var(--ab),.28)}}
+.hero h1{font-size:24px;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:2px}
+.hero h2{font-size:24px;font-weight:800;line-height:1.3;margin-bottom:12px;background:linear-gradient(135deg,var(--a1) 0%,var(--al) 60%,var(--a2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:13px;color:var(--dim)}
+
+.stats-bar{display:flex;justify-content:center;margin-bottom:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.stat-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:14px 8px;border-left:1px solid var(--border);font-size:11px;color:var(--dim)}
+.stat-item:last-child{border-left:none}
+.stat-icon{font-size:14px;margin-bottom:1px}
+.stat-num{color:var(--a1);font-weight:800;font-size:20px;line-height:1}
+
+.examples{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:22px}
+.ex-btn{background:rgba(var(--ar),var(--ag),var(--ab),.05);border:1px solid rgba(var(--ar),var(--ag),var(--ab),.13);border-radius:22px;padding:7px 15px;color:rgba(var(--ar),var(--ag),var(--ab),.65);font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s;letter-spacing:.3px}
+.ex-btn:hover{background:rgba(var(--ar),var(--ag),var(--ab),.12);color:var(--a1);border-color:rgba(var(--ar),var(--ag),var(--ab),.35);transform:translateY(-1px)}
+.ex-btn:active{transform:scale(.96)}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:16px;transition:border-color .3s}
+.card:focus-within{border-color:rgba(var(--ar),var(--ag),var(--ab),.3)}
+.card-label{display:flex;align-items:center;gap:7px;margin-bottom:12px}
+.card-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));box-shadow:0 0 8px rgba(var(--ar),var(--ag),var(--ab),.6)}
+.card-label span{font-size:12px;color:#6a6a88;font-weight:600;letter-spacing:.4px}
+textarea{width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:13px;padding:14px 16px;color:var(--text);font-size:16px;font-family:inherit;resize:none;direction:rtl;line-height:1.8;height:96px;outline:none;transition:border-color .25s,box-shadow .25s}
+textarea:focus{border-color:rgba(var(--ar),var(--ag),var(--ab),.45);box-shadow:0 0 0 3px rgba(var(--ar),var(--ag),var(--ab),.07)}
+textarea::placeholder{color:var(--muted)}
+
+.gen-btn{width:100%;margin-top:14px;border:none;border-radius:14px;padding:16px 0;font-size:17px;font-weight:800;font-family:inherit;cursor:pointer;transition:all .25s;letter-spacing:.5px;position:relative;overflow:hidden}
+.gen-btn.active{background:linear-gradient(90deg,var(--a3),var(--a1),var(--al),var(--a1),var(--a3));background-size:300% auto;color:#000;box-shadow:0 4px 30px rgba(var(--ar),var(--ag),var(--ab),.35),inset 0 1px 0 rgba(255,255,255,.25);animation:shimmer 3s linear infinite}
+@keyframes shimmer{0%{background-position:0% center}100%{background-position:300% center}}
+.gen-btn.active:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(var(--ar),var(--ag),var(--ab),.45)}
+.gen-btn.active:active{transform:scale(.98)}
+.gen-btn.disabled{background:var(--bg-dis);color:var(--dis);cursor:not-allowed;border:1px solid var(--border)}
+
+.result-card{background:var(--bg-card);border:1px solid rgba(var(--ar),var(--ag),var(--ab),.2);border-radius:18px;padding:20px;margin-bottom:14px;display:none;position:relative;overflow:hidden}
+.result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--a2) 30%,var(--a1) 50%,var(--a2) 70%,transparent)}
+.result-card.show{display:block;animation:fadeUp .45s cubic-bezier(.34,1.56,.64,1)}
+.fullscreen-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:50;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.fullscreen-overlay.open{display:flex;animation:fadeUp .3s ease}
+.fullscreen-box{background:var(--bg-card);border:1px solid rgba(var(--ar),var(--ag),var(--ab),.25);border-radius:20px;width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.fullscreen-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--a2) 30%,var(--a1) 50%,var(--a2) 70%,transparent)}
+.fullscreen-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--bd-deep)}
+.fullscreen-title{font-size:14px;font-weight:800;color:var(--a1);display:flex;align-items:center;gap:8px}
+.fullscreen-close{width:36px;height:36px;border-radius:10px;border:1px solid var(--bd-rate);background:var(--bg-rate);color:var(--dim);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit}
+.fullscreen-close:hover{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.3);color:#f87171}
+.fullscreen-output{flex:1;overflow-y:auto;padding:24px;font-size:14px;line-height:2.2;white-space:pre-wrap;direction:rtl;font-family:'Segoe UI',system-ui,sans-serif;color:var(--ob)}
+.fullscreen-output::-webkit-scrollbar{width:5px}
+.fullscreen-output::-webkit-scrollbar-thumb{background:var(--scr);border-radius:4px}
+.fullscreen-footer{padding:14px 20px;border-top:1px solid var(--bd-deep);display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.expand-btn{background:rgba(var(--ar),var(--ag),var(--ab),.07);border:1px solid rgba(var(--ar),var(--ag),var(--ab),.18);border-radius:10px;padding:7px 14px;color:var(--dim);font-size:12px;cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:5px}
+.expand-btn:hover{background:rgba(var(--ar),var(--ag),var(--ab),.14);color:var(--a1);border-color:rgba(var(--ar),var(--ag),var(--ab),.3)}
+
+.result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.result-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:var(--a1)}
+.copy-btn{background:rgba(var(--ar),var(--ag),var(--ab),.09);border:1px solid rgba(var(--ar),var(--ag),var(--ab),.24);border-radius:10px;padding:8px 18px;color:var(--a1);font-size:12px;cursor:pointer;font-family:inherit;font-weight:700;transition:all .2s}
+.copy-btn:hover{background:rgba(var(--ar),var(--ag),var(--ab),.18)}
+.copy-btn.copied{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.32);color:#4ade80}
+
+.tags{display:flex;gap:8px;margin-bottom:14px}
+.tag{border-radius:8px;padding:4px 13px;font-size:11px;font-weight:700;letter-spacing:.3px}
+.tag-cat{background:rgba(var(--ar),var(--ag),var(--ab),.1);border:1px solid rgba(var(--ar),var(--ag),var(--ab),.24);color:var(--a2)}
+.tag-lang{background:rgba(139,133,245,.1);border:1px solid rgba(139,133,245,.22);color:#a8a4f7}
+
+.prompt-output{background:var(--bg-out);border:1px solid var(--bg-out-b);border-radius:14px;padding:20px;font-size:13px;line-height:2.1;white-space:pre-wrap;direction:rtl;max-height:500px;overflow-y:auto;font-family:'Segoe UI',system-ui,sans-serif;transition:background .3s,border-color .3s}
+.prompt-output::-webkit-scrollbar{width:5px}
+.prompt-output::-webkit-scrollbar-track{background:transparent}
+.prompt-output::-webkit-scrollbar-thumb{background:var(--scr);border-radius:4px}
+.prompt-output::-webkit-scrollbar-thumb:hover{background:var(--scr-h)}
+.oh{color:var(--a1);font-weight:700}
+.os{color:#8b85f5;font-weight:600}
+.on{color:var(--a2);font-weight:700}
+.od{color:#3b9eda}
+.ob{color:var(--ob)}
+
+.rating-section{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:18px;padding:16px 0;border-top:1px solid var(--bd-deep)}
+.rating-label{font-size:12px;color:var(--dim)}
+.rate-btn{width:50px;height:50px;border-radius:14px;border:1px solid var(--bd-rate);background:var(--bg-rate);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:all .2s}
+.rate-btn:hover{border-color:rgba(var(--ar),var(--ag),var(--ab),.3);transform:translateY(-2px)}
+.rate-btn:active{transform:scale(.9)}
+.rate-btn.voted-up{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.38)}
+.rate-btn.voted-down{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.38)}
+.rate-count{font-size:11px;color:var(--dis);margin-top:3px;text-align:center}
+
+.share-section{margin-top:16px;padding-top:16px;border-top:1px solid var(--bd-deep)}
+.share-label{font-size:12px;color:var(--dim);text-align:center;margin-bottom:10px}
+.share-buttons{display:flex;gap:8px;justify-content:center}
+.share-btn{flex:1;max-width:160px;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 0;border-radius:13px;border:none;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s}
+.share-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.share-btn:active{transform:scale(.96)}
+.share-twitter{background:linear-gradient(135deg,#1d9bf0,#1778c4);color:#fff;box-shadow:0 4px 18px rgba(29,155,240,.22)}
+.share-whatsapp{background:linear-gradient(135deg,#25d366,#1aad52);color:#fff;box-shadow:0 4px 18px rgba(37,211,102,.22)}
+.share-copy{background:var(--bg-sc);color:var(--shc);border:1px solid var(--bd-rate)}
+.share-copy:hover{color:var(--dim)}
+
+.platforms-section{text-align:center;margin-top:16px}
+.platforms-section p{color:var(--plat);font-size:11px;margin-bottom:8px}
+.platforms{display:flex;justify-content:center;gap:10px}
+.platforms span{font-size:10px;color:var(--plat);font-weight:600;padding:3px 10px;border:1px solid var(--border);border-radius:6px}
+
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(90px);background:linear-gradient(135deg,var(--a1),var(--a2));color:#000;padding:12px 28px;border-radius:14px;font-size:13px;font-weight:800;z-index:100;transition:transform .38s cubic-bezier(.34,1.56,.64,1);pointer-events:none;box-shadow:0 8px 36px rgba(var(--ar),var(--ag),var(--ab),.4)}
 .toast.show{transform:translateX(-50%) translateY(0)}
-.ft{text-align:center;margin-top:24px}
-.fl{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:4px}
-.fl span:first-child{font-size:11px}
-.fl span:last-child{font-size:12px;font-weight:800;color:var(--ac);letter-spacing:1px}
-.ft p{color:var(--tx5);font-size:9px}
-@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.footer{text-align:center;margin-top:40px;padding-bottom:16px}
+.footer-logo{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:6px}
+.footer-logo span:first-child{font-size:14px}
+.footer-logo span:last-child{font-size:13px;font-weight:800;letter-spacing:1px;background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.footer p{color:var(--faint);font-size:10px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 </style>
 </head>
 <body>
-<div class="g1"></div><div class="g2"></div>
+<div class="glow1"></div>
+<div class="glow2"></div>
+<div class="glow3"></div>
 <div class="toast" id="toast"></div>
-
-<!-- TOP BAR -->
-
-<div class="top">
-  <div class="logo"><span>⚡</span><span>FAHAD.AI</span></div>
-  <div class="top-controls">
-    <!-- Theme Colors -->
-    <div class="colors-row">
-      <div class="color-dot sel" style="background:#fbbf24" onclick="setTheme('gold')" title="ذهبي"></div>
-      <div class="color-dot" style="background:#3b82f6" onclick="setTheme('blue')" title="أزرق"></div>
-      <div class="color-dot" style="background:#22c55e" onclick="setTheme('green')" title="أخضر"></div>
-      <div class="color-dot" style="background:#a855f7" onclick="setTheme('purple')" title="بنفسجي"></div>
-      <div class="color-dot" style="background:#ef4444" onclick="setTheme('red')" title="أحمر"></div>
-      <div class="color-dot" style="background:#06b6d4" onclick="setTheme('cyan')" title="سماوي"></div>
-    </div>
-    <!-- Dark/Light -->
-    <button class="top-btn" id="modeBtn" onclick="toggleMode()">🌙 داكن</button>
-    <span style="font-size:10px;color:var(--tx5)">v3.5</span>
+<div class="topbar">
+  <div class="topbar-logo"><span>⚡</span><span>FAHAD.AI</span></div>
+  <div class="topbar-right">
+    <div class="theme-switcher" id="themeSwitcher"></div>
+    <button class="mode-btn" id="modeBtn" onclick="toggleMode()" title="تبديل الوضع">🌙</button>
+    <span class="topbar-ver">v2.0</span>
   </div>
 </div>
-
-<div class="mn">
+<div class="main">
   <div class="hero">
-    <div class="hi">⚡</div>
+    <div class="hero-icon">⚡</div>
     <h1>حوّل كلامك البسيط</h1>
     <h2>إلى أوامر خارقة</h2>
-    <p>٢٠ تصنيف ذكي — عربي وإنجليزي — ألوان وثيمات مخصصة</p>
-    <div class="vb">🆕 v3.5 — ٢٠ تصنيف + اختيار اللغة + ثيمات</div>
+    <p>اكتب طلبك بأي كلام عادي وشوف السحر</p>
   </div>
-
-  <div class="sb">
-    <div class="si">⚡ <span class="sn" id="sG">0</span> أمر</div>
-    <div class="si">📤 <span class="sn" id="sS">0</span> مشاركة</div>
-    <div class="si">👍 <span class="sn" id="sL">0</span> إعجاب</div>
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-icon">⚡</span><span class="stat-num" id="statGenerated">0</span><span>أمر تم تحويله</span></div>
+    <div class="stat-item"><span class="stat-icon">📤</span><span class="stat-num" id="statShared">0</span><span>مشاركة</span></div>
+    <div class="stat-item"><span class="stat-icon">👍</span><span class="stat-num" id="statLikes">0</span><span>إعجاب</span></div>
   </div>
-
-  <!-- LANGUAGE TOGGLE -->
-
-  <div class="lang-toggle">
-    <button class="lt-btn active" id="ltAr" onclick="setLang('ar')">🇸🇦 عربي</button>
-    <button class="lt-btn" id="ltEn" onclick="setLang('en')">🇺🇸 English</button>
+  <div class="examples" id="examples"></div>
+  <div class="card">
+    <div class="card-label"><div class="card-dot"></div><span>طلبك البسيط</span></div>
+    <textarea id="input" placeholder="مثال: أبي أسوي موقع لمتجر قهوة مختصة"></textarea>
+    <button class="gen-btn disabled" id="genBtn" onclick="generate()">⚡ حوّل للخارق</button>
   </div>
-
-  <!-- Categories -->
-
-  <div class="cw">
-    <div class="ct">اختر تصنيف أو اكتب مباشرة:</div>
-    <div class="cs" id="catBtns"></div>
-  </div>
-
-  <div class="ex" id="exBtns"></div>
-
-  <div class="cd">
-    <div class="cl"><div class="cd3"></div><span>طلبك البسيط</span></div>
-    <textarea id="inp" placeholder="مثال: أبي أسوي موقع لمتجر قهوة مختصة"></textarea>
-    <button class="gb d" id="gB" onclick="go()">⚡ حوّل للخارق</button>
-  </div>
-
-  <div class="rc" id="rC">
-    <div class="rh">
-      <div class="rt"><span>🚀</span> الأمر الخارق</div>
-      <button class="cpb" id="cB" onclick="cpP()">📋 نسخ</button>
-    </div>
-    <div class="tg">
-      <span class="t tc" id="tC"></span>
-      <span class="t tl" id="tL"></span>
-      <span class="t tp" id="tP"></span>
-    </div>
-    <div class="po" id="out"></div>
-    <div class="rs">
-      <span class="rl">هل ساعدك؟</span>
-      <div><button class="rb" id="rU" onclick="rate('up')">👍</button><div class="rcc" id="rUC">0</div></div>
-      <div><button class="rb" id="rD" onclick="rate('dn')">👎</button><div class="rcc" id="rDC">0</div></div>
-    </div>
-    <div class="ss">
-      <div class="ssl">شارك الأداة ⚡</div>
-      <div class="sbs">
-        <button class="sb3 stw" onclick="shTw()">𝕏 تويتر</button>
-        <button class="sb3 swa" onclick="shWa()">💬 واتساب</button>
-        <button class="sb3 scp2" onclick="shLn()">🔗 رابط</button>
+  <div class="result-card" id="resultCard">
+    <div class="result-header">
+      <div class="result-title"><span>🚀</span> الأمر الخارق</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="expand-btn" onclick="openFullscreen()">⛶ تكبير</button>
+        <button class="expand-btn" onclick="downloadPrompt()">⬇ تحميل</button>
+        <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">📋 نسخ</button>
       </div>
     </div>
-    <div class="ps"><p>💡 الصق في أي أداة ذكاء اصطناعي</p><div class="pl"><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Grok</span><span>Copilot</span></div></div>
+    <div class="tags">
+      <span class="tag tag-cat" id="tagCat"></span>
+      <span class="tag tag-lang" id="tagLang"></span>
+    </div>
+    <div class="prompt-output" id="output"></div>
+    <!-- RATING SECTION -->
+    <div class="rating-section">
+      <span class="rating-label">هل ساعدك الأمر؟</span>
+      <div><button class="rate-btn" id="rateUp" onclick="rate('up')">👍</button><div class="rate-count" id="rateUpCount">0</div></div>
+      <div><button class="rate-btn" id="rateDown" onclick="rate('down')">👎</button><div class="rate-count" id="rateDownCount">0</div></div>
+    </div>
+    <!-- SHARE SECTION - TWITTER + WHATSAPP -->
+    <div class="share-section">
+      <div class="share-label">شارك الأداة وساعد غيرك ⚡</div>
+      <div class="share-buttons">
+        <button class="share-btn share-twitter" onclick="shareTwitter()">𝕏 تويتر</button>
+        <button class="share-btn share-whatsapp" onclick="shareWhatsApp()">💬 واتساب</button>
+        <button class="share-btn share-copy" onclick="shareLink()">🔗 نسخ الرابط</button>
+      </div>
+    </div>
+    <div class="platforms-section">
+      <p>💡 الصق الأمر في أي أداة ذكاء اصطناعي</p>
+      <div class="platforms"><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Grok</span></div>
+    </div>
   </div>
-
-  <div class="ft"><div class="fl"><span>⚡</span><span>FAHAD.AI</span></div><p>حوّل أفكارك البسيطة إلى أوامر خارقة — مجاناً</p></div>
+  <div class="footer">
+    <div class="footer-logo"><span>⚡</span><span>FAHAD.AI</span></div>
+    <p>حوّل أفكارك البسيطة إلى أوامر خارقة — مجاناً</p>
+  </div>
 </div>
-
 <script>
-var URL2="https://fahadx7.github.io/promptnow/";
-var D=JSON.parse(localStorage.getItem("fai35")||'{"g":0,"s":0,"l":0,"d":0}');
-var outLang="ar"; // default output language
-var isDark=true;
-var curTheme="gold";
+var SITE_URL="https://fahadx7.github.io/promptnow/";
+var data=JSON.parse(localStorage.getItem("fai_data")||'{"gen":0,"shares":0,"likes":0,"dislikes":0}');
+updateStats();
 
-// Load saved prefs
-var prefs=JSON.parse(localStorage.getItem("fai_prefs")||'{}');
-if(prefs.theme)curTheme=prefs.theme;
-if(prefs.mode==="light"){isDark=false;document.body.classList.add("light");}
-if(prefs.lang)outLang=prefs.lang;
-applyTheme();applyLangBtns();updS();
+var examples=["أبي موقع لمتجر قهوة","خطة تسويق لمشروعي","ساعدني أكتب إيميل","تطبيق تحليل أسهم","أبي أتعلم البرمجة","سكريبت فيديو يوتيوب","سكريبت تيك توك","Build me a dashboard"];
+var exDiv=document.getElementById("examples");
+examples.forEach(function(e){var b=document.createElement("button");b.className="ex-btn";b.textContent=e;b.onclick=function(){document.getElementById("input").value=e;checkInput();};exDiv.appendChild(b);});
 
-// ===== THEME =====
-function setTheme(t){
-  curTheme=t;
-  document.querySelectorAll(".color-dot").forEach(function(d){d.classList.remove("sel");});
-  event.target.classList.add("sel");
-  applyTheme();savePrefs();
-}
-function applyTheme(){
-  document.body.className=document.body.className.replace(/theme-\w+/g,"").trim();
-  if(!isDark)document.body.classList.add("light");
-  if(curTheme!=="gold")document.body.classList.add("theme-"+curTheme);
-}
-function toggleMode(){
-  isDark=!isDark;
-  if(isDark){document.body.classList.remove("light");document.getElementById("modeBtn").innerHTML="🌙 داكن";}
-  else{document.body.classList.add("light");document.getElementById("modeBtn").innerHTML="☀️ فاتح";}
-  savePrefs();
-}
-function savePrefs(){localStorage.setItem("fai_prefs",JSON.stringify({theme:curTheme,mode:isDark?"dark":"light",lang:outLang}));}
+var inp=document.getElementById("input");
+inp.addEventListener("input",checkInput);
+inp.addEventListener("keydown",function(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();generate();}});
+function checkInput(){document.getElementById("genBtn").className=inp.value.trim()?"gen-btn active":"gen-btn disabled";}
 
-// ===== LANGUAGE =====
-function setLang(l){outLang=l;applyLangBtns();savePrefs();}
-function applyLangBtns(){
-  document.getElementById("ltAr").className=outLang==="ar"?"lt-btn active":"lt-btn";
-  document.getElementById("ltEn").className=outLang==="en"?"lt-btn active":"lt-btn";
+function detectLang(t){return /[\u0600-\u06FF]/.test(t)?"ar":"en";}
+function detectCat(t){
+  t=t.toLowerCase();
+  var c=[
+    {id:"website",kw:["موقع","صفحة","لاندنق","website","landing","page","web","هيدر"],ar:"تطوير مواقع",en:"Web Dev"},
+    {id:"app",kw:["تطبيق","app","أبلكيشن","برنامج","application","mobile"],ar:"تطبيقات",en:"Apps"},
+    {id:"marketing",kw:["تسويق","marketing","إعلان","حملة","campaign","سوشال","ترويج","ماركتنق"],ar:"تسويق",en:"Marketing"},
+    {id:"email",kw:["إيميل","بريد","email","رسالة","mail","ايميل"],ar:"بريد",en:"Email"},
+    {id:"business",kw:["مشروع","بزنس","business","شركة","خطة عمل","startup"],ar:"أعمال",en:"Business"},
+    {id:"content",kw:["محتوى","مقال","بوست","content","article","post","كتابة","write","ثريد","تغريدة"],ar:"محتوى",en:"Content"},
+    {id:"design",kw:["تصميم","design","لوقو","logo","شعار","هوية","brand","ui"],ar:"تصميم",en:"Design"},
+    {id:"data",kw:["بيانات","تحليل","data","analysis","أسهم","stock","داشبورد","تقرير"],ar:"بيانات",en:"Data"},
+    {id:"learning",kw:["تعلم","learn","دورة","course","شرح","explain","درس"],ar:"تعليم",en:"Learning"},
+    {id:"code",kw:["كود","code","برمجة","program","script","api","بايثون","python","react"],ar:"برمجة",en:"Code"},
+    {id:"video",kw:["فيديو","يوتيوب","سكريبت","تيك توك","ريلز","شورتس","youtube","video","vlog","shorts","رeel"],ar:"فيديو",en:"Video"}
+  ];
+  for(var i=0;i<c.length;i++){for(var j=0;j<c[i].kw.length;j++){if(t.includes(c[i].kw[j]))return c[i];}}
+  return {id:"general",ar:"عام",en:"General"};
 }
 
-// ===== CATEGORIES (20) =====
-var C=[
-{id:"website",i:"🌐",kw:["موقع","صفحة","لاندنق","website","landing","page","web"],ar:"مواقع",en:"Web"},
-{id:"app",i:"📱",kw:["تطبيق","app","أبلكيشن","برنامج","mobile","ios","اندرويد"],ar:"تطبيقات",en:"Apps"},
-{id:"marketing",i:"📈",kw:["تسويق","marketing","إعلان","حملة","campaign","سوشال","ترويج"],ar:"تسويق",en:"Marketing"},
-{id:"email",i:"📧",kw:["إيميل","بريد","email","رسالة","mail","ايميل"],ar:"بريد",en:"Email"},
-{id:"business",i:"💼",kw:["مشروع","بزنس","business","شركة","خطة عمل","startup"],ar:"أعمال",en:"Business"},
-{id:"content",i:"✍️",kw:["محتوى","مقال","بوست","content","article","كتابة","ثريد","تغريدة"],ar:"محتوى",en:"Content"},
-{id:"design",i:"🎨",kw:["تصميم","design","لوقو","logo","شعار","هوية","brand","ui"],ar:"تصميم",en:"Design"},
-{id:"data",i:"📊",kw:["بيانات","تحليل","data","analysis","أسهم","stock","داشبورد","تقرير"],ar:"بيانات",en:"Data"},
-{id:"learning",i:"📚",kw:["تعلم","learn","دورة","course","شرح","explain","درس"],ar:"تعليم",en:"Learning"},
-{id:"code",i:"💻",kw:["كود","code","برمجة","program","script","api","بايثون","python","react"],ar:"برمجة",en:"Code"},
-{id:"cv",i:"📄",kw:["سيرة","ذاتية","cv","resume","وظيفة","توظيف","مقابلة","job"],ar:"سيرة ذاتية",en:"CV"},
-{id:"youtube",i:"🎬",kw:["يوتيوب","youtube","فيديو","video","سكربت","قناة","ريلز","تيك توك"],ar:"يوتيوب",en:"YouTube"},
-{id:"ecommerce",i:"🛒",kw:["متجر","ecommerce","سلة","شوبيفاي","منتج","بيع","store"],ar:"تجارة",en:"E-Com"},
-{id:"finance",i:"💰",kw:["مالي","finance","استثمار","invest","ميزانية","budget","ضريبة"],ar:"مالية",en:"Finance"},
-{id:"health",i:"🏥",kw:["صحة","health","رياضة","fitness","gym","تغذية","diet","تمارين","وزن"],ar:"صحة",en:"Health"},
-{id:"realestate",i:"🏠",kw:["عقار","عقارات","real estate","شقة","أرض","إيجار","بيت"],ar:"عقارات",en:"Realty"},
-{id:"legal",i:"⚖️",kw:["قانون","legal","عقد","contract","نظام","محامي","حقوق"],ar:"قانوني",en:"Legal"},
-{id:"travel",i:"✈️",kw:["سفر","travel","رحلة","فندق","سياحة","حجز","طيران"],ar:"سفر",en:"Travel"},
-{id:"translate",i:"🌍",kw:["ترجمة","translate","ترجم","translation","لغة"],ar:"ترجمة",en:"Translate"},
-{id:"social",i:"📱",kw:["انستقرام","instagram","سناب","لينكدإن","linkedin","متابعين","بايو"],ar:"سوشال",en:"Social"}
-];
-var cDiv=document.getElementById("catBtns");
-C.forEach(function(c){var b=document.createElement("button");b.className="cb2";b.innerHTML=c.i+" "+c.ar;b.onclick=function(){document.querySelectorAll(".cb2").forEach(function(x){x.className="cb2";});b.className="cb2 active";inp.placeholder="اكتب طلبك في مجال "+c.ar+"...";inp.focus();ck();};cDiv.appendChild(b);});
-
-var EX=["أبي موقع لمتجر قهوة","خطة تسويق لمشروعي","ساعدني أكتب إيميل","سكربت يوتيوب","سيرة ذاتية احترافية","Build a dashboard"];
-var eDiv=document.getElementById("exBtns");
-EX.forEach(function(e){var b=document.createElement("button");b.className="eb";b.textContent=e;b.onclick=function(){inp.value=e;ck();};eDiv.appendChild(b);});
-
-var inp=document.getElementById("inp");
-inp.addEventListener("input",ck);
-inp.addEventListener("keydown",function(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();go();}});
-function ck(){document.getElementById("gB").className=inp.value.trim()?"gb a":"gb d";}
-
-function dC(t){t=t.toLowerCase();for(var i=0;i<C.length;i++){for(var j=0;j<C[i].kw.length;j++){if(t.includes(C[i].kw[j]))return C[i];}}return{id:"general",i:"🧠",ar:"عام",en:"General"};}
-
-// ===== PROMPT ENGINE v3.5 — BILINGUAL =====
+/* =====================================================
+   PRO PROMPT ENGINE v2.0 - Chain of Thought + Context
+   ===================================================== */
 var T={
-website:{ar:function(t){return "# الدور والخبرة\nأنت مطور ويب أول (Senior Full-Stack Developer) ومصمم UX/UI بخبرة ١٥+ سنة. تفهم سيكولوجية المستخدم العربي.\n\n# المهمة\n"+t+"\n\n# السياق\nالموقع يستهدف السوق العربي/السعودي. الجوال أولاً. هدف واحد واضح خلال ٥ ثوانٍ.\n\n# خطوات التنفيذ (فكّر خطوة بخطوة)\n١. حلل: مَن الزائر؟ مشكلته؟ الحل؟\n٢. صمم الهيكل قبل الكود\n٣. اكتب النصوص التسويقية أولاً\n٤. نفّذ: HTML → CSS → JS\n\n# المتطلبات\n- HTML5 دلالي + CSS حديث + JS خفيف\n- Mobile-first + سرعة أقل من ٣ ثوانٍ\n- CTA بارز + RTL + تأثيرات CSS فقط\n- أقسام: Hero → المشكلة → الحل → المميزات → شهادات → CTA → فوتر\n\n# ما لا يجب فعله\n- لا Lorem ipsum — نصوص حقيقية\n- لا أكثر من ٣ ألوان + لون CTA\n- لا أكثر من خطين\n\n# التنسيق\nملف HTML واحد كامل مع تعليقات.";},en:function(t){return "# Role & Expertise\nYou are a Senior Full-Stack Developer & UX/UI Designer with 15+ years of experience building websites with 5%+ conversion rates.\n\n# Task\n"+t+"\n\n# Context\nMobile-first. Must achieve ONE clear goal within 5 seconds of visit.\n\n# Step-by-Step Approach\n1. Analyze: target visitor, their problem, our solution\n2. Design wireframe before coding\n3. Write marketing copy first, build around it\n4. Implement: HTML → CSS → JS\n\n# Technical Requirements\n- Semantic HTML5 + Modern CSS (Grid/Flexbox) + Minimal JS\n- Mobile-first, under 3s load time\n- Prominent CTA buttons with contrasting colors\n- CSS-only animations\n- Sections: Hero → Problem → Solution → Features → Testimonials → CTA → Footer\n\n# Constraints\n- NO Lorem ipsum — write real persuasive copy\n- NO more than 3 colors + 1 CTA color\n- NO more than 2 font families\n\n# Output Format\nSingle complete HTML file with comments for each section.";}},
-app:{ar:function(t){return "# الدور\nمهندس تطبيقات أول. +١٠ تطبيقات، مليون+ تحميل.\n\n# المهمة\n"+t+"\n\n# السياق\nالتطبيق للمستخدم السعودي. بسيط بدون شرح.\n\n# خطوات التفكير\n١. المشكلة في جملة واحدة\n٢. رحلة المستخدم\n٣. أقل شاشات ممكنة\n٤. التقنية مع تبرير\n\n# المتطلبات\n- Stack تقني + Schema + API + Auth + Push + RTL + Dark Mode\n- Onboarding ٣ خطوات + Loading/Empty/Error states\n\n# ما لا يجب فعله\n- لا تقنيات بدون تبرير. لا أكثر من ٧ شاشات MVP.\n\n# التنسيق\nنظرة عامة → شاشات → Schema → API → خطة مرحلية → كود مثال";},en:function(t){return "# Role\nLead Mobile Engineer. 10+ apps, 1M+ downloads.\n\n# Task\n"+t+"\n\n# Context\nMust be usable without instructions. Do ONE thing better than everyone.\n\n# Step-by-Step\n1. Core problem in one sentence\n2. User journey\n3. Minimum screens\n4. Tech choice with justification\n\n# Requirements\n- Tech stack + Schema + API + Auth + Push + Dark Mode\n- Max 3-step onboarding + Loading/Empty/Error states\n\n# Constraints\n- No tech without justification. Max 7 MVP screens.\n\n# Output\nOverview → Screen map → Schema → API → Phased plan → Code example";}},
-marketing:{ar:function(t){return "# الدور\nCMO بخبرة ١٥+ سنة بالسوق السعودي. نمو من صفر إلى ١٠٠٠ عميل.\n\n# المهمة\n"+t+"\n\n# السياق\nالسوق السعودي. تويتر، سناب، إنستقرام، تيك توك. ميزانية محدودة.\n\n# خطوات التفكير\n١. Persona بالتفصيل\n٢. المشكلة ولماذا نحن؟\n٣. القنوات بالأولوية\n٤. الرسالة (جملة واحدة)\n\n# المتطلبات\n- تحليل جمهور + رحلة عميل + استراتيجية لكل قناة\n- خطة ٣٠ يوم + ميزانية + KPIs + ٣ حملات فيروسية\n\n# ما لا يجب فعله\n- لا عامة. ركّز ٢-٣ قنوات. لا نسخ غربي.\n\n# التنسيق\nجدول لكل قناة + تقويم أسبوعي.";},en:function(t){return "# Role\nCMO, 15+ years, startup growth specialist 0→1000 customers.\n\n# Task\n"+t+"\n\n# Context\nLimited budget. Need maximum ROI.\n\n# Step-by-Step\n1. Detailed customer persona\n2. Problem we solve + why us\n3. Prioritized channels\n4. Core message (one sentence)\n\n# Requirements\n- Audience analysis + Customer journey + Per-channel strategy\n- 30-day content plan + Budget breakdown + KPIs + 3 viral campaign ideas\n\n# Constraints\n- No generic strategies. Focus 2-3 channels only.\n\n# Output\nTable per channel + Weekly content calendar.";}},
-email:{ar:function(t){return "# الدور\nكاتب إقناعي. نسب فتح ٤٠٪+. خبير AIDA/PAS.\n\n# المهمة\n"+t+"\n\n# السياق\nالمستلم يتلقى ٥٠+ إيميل/يوم. ٣ ثوانٍ للفتح.\n\n# خطوات التفكير\n١. هدف واحد\n٢. ما يهم المستلم\n٣. عنوان يفوز وسط ٥٠\n٤. أقصر طريق للـ CTA\n\n# المتطلبات\n- ٣ عناوين (<٧ كلمات) + افتتاحية قوية + جسم <١٥٠ كلمة\n- ٣ نسخ: رسمية، ودودة، مباشرة\n\n# ما لا يجب فعله\n- لا تحيات طويلة. CTA واحد. لا سبام.\n\n# التنسيق\nعنوان←افتتاحية←جسم←CTA لكل نسخة.";},en:function(t){return "# Role\nSenior Copywriter. 40%+ open rates. AIDA/PAS expert.\n\n# Task\n"+t+"\n\n# Context\nRecipient gets 50+ emails/day. 3 seconds to convince.\n\n# Step-by-Step\n1. ONE goal\n2. Recipient's interests\n3. Winning subject line\n4. Shortest path to CTA\n\n# Requirements\n- 3 subject lines (<7 words) + Strong opening + Body <150 words\n- 3 versions: Formal, Friendly, Direct\n\n# Constraints\n- No long greetings. ONE CTA. No spam words.\n\n# Output\nSubject → Opening → Body → CTA per version.";}},
-business:{ar:function(t){return "# الدور\nمستشار McKinsey/BCG. ٢٠ سنة بالسعودية. يفهم رؤية ٢٠٣٠.\n\n# المهمة\n"+t+"\n\n# السياق\nمشروع ناشئ. ميزانية محدودة. هدف: Product-Market Fit.\n\n# خطوات التفكير\n١. المشكلة الحقيقية\n٢. مَن يدفع ولماذا الحين؟\n٣. اختبار بأقل تكلفة\n٤. أول ١٠٠ ريال من وين؟\n\n# المتطلبات\n- TAM→SAM→SOM + BMC + ٣ منافسين + إيرادات + تكاليف\n- خطة ٩٠ يوم + ٥ مخاطر\n\n# ما لا يجب فعله\n- لا أرقام خيالية. لا \"ما فيه منافسين\".\n\n# التنسيق\nملخص ٣ أسطر → خطة مرقمة بجداول.";},en:function(t){return "# Role\nMcKinsey-level Consultant. 20 years, 50+ startups.\n\n# Task\n"+t+"\n\n# Context\nBootstrapped. Goal: Product-Market Fit first.\n\n# Step-by-Step\n1. Real problem\n2. Who pays and why now\n3. Cheapest test\n4. First $100 source\n\n# Requirements\n- TAM→SAM→SOM + BMC + 3 competitors + Revenue model + Costs\n- 90-day plan + 5 risks with mitigation\n\n# Constraints\n- No fantasy numbers. Never \"no competitors\".\n\n# Output\n3-line summary → Numbered plan with tables.";}},
-content:{ar:function(t){return "# الدور\nصانع محتوى فيروسي. يفهم خوارزميات المنصات العربية.\n\n# المهمة\n"+t+"\n\n# السياق\n١.٥ ثانية لإيقاف التمرير. Hook + قيمة + CTA.\n\n# خطوات التفكير\n١. مَن يقرأ؟ ٢. Hook؟ ٣. القيمة؟ ٤. الإجراء؟\n\n# المتطلبات\n- ٣ نسخ: Hook مباشر / قصة / سؤال\n- ٥ هاشتاقات + أفضل وقت نشر\n\n# ما لا يجب فعله\n- لا ممل. لا رسمي. CTA واحد. لا مقدمات.\n\n# التنسيق\nكل نسخة جاهزة للنسخ واللصق.";},en:function(t){return "# Role\nViral content specialist. Expert in platform algorithms.\n\n# Task\n"+t+"\n\n# Context\n1.5 seconds to stop scroll. Hook + Value + CTA.\n\n# Step-by-Step\n1. Who reads? 2. What hook? 3. What value? 4. What action?\n\n# Requirements\n- 3 versions: Direct Hook / Story / Question\n- 5 hashtags + Best posting time\n\n# Constraints\n- No filler. No formal language. ONE CTA.\n\n# Output\nEach version ready to copy-paste.";}},
-design:{ar:function(t){return "# الدور\nمدير إبداعي حائز جوائز. ١٥+ سنة هويات بصرية.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. شخصية العلامة؟ ٢. الجمهور؟ ٣. المشاعر؟ ٤. التميز البصري؟\n\n# المتطلبات\n- مفهوم + ألوان HEX + نسب + معنى نفسي\n- خط عربي + إنجليزي + أمثلة تطبيقية + Do's & Don'ts\n\n# ما لا يجب فعله\n- لا ألوان بدون تبرير. لا أكثر من خطين.\n\n# التنسيق\nBrand Guidelines مصغرة.";},en:function(t){return "# Role\nAward-winning Creative Director, 15+ years.\n\n# Task\n"+t+"\n\n# Think\nBrand personality → Audience → Emotions → Differentiation\n\n# Requirements\n- Concept + Colors HEX + Usage ratios + Psychology\n- Typography + Application examples + Do's & Don'ts\n\n# Constraints\n- No unjustified colors. Max 2 fonts.\n\n# Output\nMini Brand Guidelines.";}},
-data:{ar:function(t){return "# الدور\nمحلل بيانات أول + AI. ١٢+ سنة.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. السؤال؟ ٢. البيانات المتاحة؟ ٣. أبسط تحليل؟ ٤. القرار؟\n\n# المتطلبات\n- مصادر + منهجية + Dashboard ٥ أرقام + Insights + كود جاهز\n\n# ما لا يجب فعله\n- لا بيانات بدون تفسير. لا أكثر من ٥ KPIs.\n\n# التنسيق\nملخص ٣ أسطر → تفاصيل → توصيات مرقمة.";},en:function(t){return "# Role\nLead Data Analyst + AI, 12+ years.\n\n# Task\n"+t+"\n\n# Think\nQuestion → Data → Simplest analysis → Decision\n\n# Requirements\n- Sources + Methodology + 5-metric Dashboard + Insights + Code\n\n# Constraints\n- No uninterpreted data. Max 5 KPIs.\n\n# Output\n3-line summary → Details → Numbered recommendations.";}},
-learning:{ar:function(t){return "# الدور\nمعلم خبير ٢٠ سنة. \"لو ما تشرحه لطفل ١٠ سنوات، ما فهمته.\"\n\n# المهمة\n"+t+"\n\n# السياق\nمبتدئ. جوال. ١-٢ ساعة/يوم.\n\n# خطوات التفكير\n١. باريتو: ٢٠٪ تعطي ٨٠٪\n٢. مشروع في يومين\n٣. أخطاء المبتدئين\n٤. ترتيب تراكمي\n\n# المتطلبات\n- خارطة: أساسيات→متوسط→متقدم + درس ٥ دقائق + مصادر مجانية + مشروع تخرج\n\n# ما لا يجب فعله\n- لا نظري فقط. لا مصطلحات بدون شرح. لا درس >١٠ دقائق.\n\n# التنسيق\n\"بعد هذه الخطة ستكون قادراً على...\" + جداول.";},en:function(t){return "# Role\nMaster Educator, 20 years. \"Can't explain to 10yo = don't understand.\"\n\n# Task\n"+t+"\n\n# Context\nBeginner. Phone. 1-2hrs/day.\n\n# Think\nPareto 20/80 → Day-2 project → Common mistakes → Cumulative order\n\n# Requirements\n- Roadmap: basics→intermediate→advanced + 5-min lessons + Free resources + Capstone\n\n# Constraints\n- No theory-only. No jargon. Max 10min lessons.\n\n# Output\n\"After this plan you can...\" + Tables.";}},
-code:{ar:function(t){return "# الدور\nمهندس Google/Meta. ١٥+ سنة. كود نظيف.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. المشكلة؟ قسّمها\n٢. أبسط حل\n٣. Edge cases\n٤. التوسع\n\n# المتطلبات\n- Clean Code + SOLID + دوال <٢٠ سطر + Error Handling + اختبار\n\n# ما لا يجب فعله\n- لا تكرار. لا YAGNI. لا console.log.\n\n# التنسيق\nخطة ٣ أسطر → كود → مثال → اختبار.";},en:function(t){return "# Role\nPrincipal Engineer, Google/Meta, 15+ years.\n\n# Task\n"+t+"\n\n# Think\nProblem → Simplest solution → Edge cases → Scale\n\n# Requirements\n- Clean Code + SOLID + Functions <20 lines + Error handling + Tests\n\n# Constraints\n- DRY. YAGNI. No console.log.\n\n# Output\n3-line plan → Code → Example → Test.";}},
-cv:{ar:function(t){return "# الدور\nخبير توظيف ١٥ سنة. يعرف ما يبحث عنه مدراء التوظيف في ٦ ثوانٍ.\n\n# المهمة\n"+t+"\n\n# السياق\nسوق العمل السعودي تنافسي. ٦ ثوانٍ لكل سيرة.\n\n# خطوات التفكير\n١. الوظيفة المستهدفة؟\n٢. أقوى ٣ إنجازات بأرقام؟\n٣. كلمات ATS المفتاحية؟\n٤. ما يميزك عن ١٠٠ متقدم؟\n\n# المتطلبات\n- ملخص ٣ أسطر + خبرات: فعل+نتيجة+رقم\n- متوافق ATS + نسختين عربي/إنجليزي\n\n# ما لا يجب فعله\n- لا \"شخص مجتهد\" — أرقام فقط. لا أكثر من صفحتين.\n\n# التنسيق\nملخص → خبرات → تعليم → مهارات → شهادات.";},en:function(t){return "# Role\nSenior Recruiter & CV Expert, 15 years. Knows what gets noticed in 6 seconds.\n\n# Task\n"+t+"\n\n# Context\nCompetitive market. 6 seconds per CV.\n\n# Think\nTarget role → Top 3 achievements with numbers → ATS keywords → Differentiator\n\n# Requirements\n- 3-line summary + Experience: Action+Result+Number + ATS-compatible\n\n# Constraints\n- No generic phrases. Max 2 pages.\n\n# Output\nSummary → Experience → Education → Skills → Certifications.";}},
-youtube:{ar:function(t){return "# الدور\nصانع يوتيوب. مليون+ مشاهدة. خبير retention و CTR.\n\n# المهمة\n"+t+"\n\n# السياق\nأول ٥ ثوانٍ تحدد الاستمرار. Thumbnail+Title = ٨٠٪ نقرات.\n\n# خطوات التفكير\n١. Hook يمنع الخروج في ٥ ثوانٍ\n٢. وعد العنوان\n٣. الحفاظ على الانتباه\n٤. CTA النهاية\n\n# المتطلبات\n- ٣ عناوين + وصف Thumbnail + سكربت بالتوقيت + وصف SEO + ٥ هاشتاقات\n\n# ما لا يجب فعله\n- لا مقدمات طويلة. Hook أولاً.\n\n# التنسيق\nسكربت بالتوقيت + عناوين + وصف.";},en:function(t){return "# Role\nYouTube creator, 1M+ views. Retention & CTR expert.\n\n# Task\n"+t+"\n\n# Context\nFirst 5 seconds decide watch/leave. Thumbnail+Title = 80% clicks.\n\n# Think\n5s Hook → Title promise → Retention → End CTA\n\n# Requirements\n- 3 titles + Thumbnail desc + Timed script + SEO description + 5 hashtags\n\n# Constraints\n- No long intros. Hook first.\n\n# Output\nTimed script + Titles + Description.";}},
-ecommerce:{ar:function(t){return "# الدور\nخبير تجارة إلكترونية ١٢+ سنة. متاجر مليون+ ريال.\n\n# المهمة\n"+t+"\n\n# السياق\nالسعودية: ٣٠+ مليون مستهلك رقمي. التجربة والتوصيل = النجاح.\n\n# خطوات التفكير\n١. المنتج والجمهور؟\n٢. لماذا أنا مو أمازون/نون؟\n٣. التسعير والشحن؟\n٤. أول ١٠٠ طلب؟\n\n# المتطلبات\n- منصة مع تبرير + صفحة منتج مثالية + تسعير + خطة إطلاق\n\n# ما لا يجب فعله\n- لا ٢٠٠ منتج — ابدأ ٣-٥. ٨٠٪ يشترون من الجوال.\n\n# التنسيق\nخطة إطلاق مرحلية بأرقام.";},en:function(t){return "# Role\nE-commerce expert, 12+ years, 1M+ SAR stores.\n\n# Task\n"+t+"\n\n# Context\n30M+ digital consumers. UX + fast delivery = key.\n\n# Think\nProduct/audience → Why us vs Amazon → Pricing/shipping → First 100 orders\n\n# Requirements\n- Platform + Product page + Pricing + Launch plan\n\n# Constraints\n- Start 3-5 products. Mobile-first.\n\n# Output\nPhased launch plan with numbers.";}},
-finance:{ar:function(t){return "# الدور\nمستشار مالي CFA ١٥+ سنة. تخطيط مالي بالسعودية.\n\n# المهمة\n"+t+"\n\n# السياق\nزكاة + ضريبة ١٥٪ + أنظمة هيئة الزكاة.\n\n# خطوات التفكير\n١. الهدف المالي والإطار الزمني؟\n٢. الوضع الحالي؟\n٣. مستوى المخاطرة؟\n٤. الأدوات المتاحة بالسعودية؟\n\n# المتطلبات\n- تحليل حالي + خطة + توزيع استثمارات + سيناريوهات\n\n# تنويه: ليست نصيحة مالية رسمية.\n\n# ما لا يجب فعله\n- لا عوائد مضمونة. لا تتجاهل المخاطر.\n\n# التنسيق\nخطة مالية بجداول.";},en:function(t){return "# Role\nCFA, 15+ years financial planning.\n\n# Task\n"+t+"\n\n# Think\nGoal+Timeline → Current situation → Risk level → Available tools\n\n# Requirements\n- Analysis + Plan + Investment allocation + Scenarios\n\n# Disclaimer: Not official financial advice.\n\n# Constraints\n- No guaranteed returns. No ignoring risks.\n\n# Output\nFinancial plan with tables.";}},
-health:{ar:function(t){return "# الدور\nمدرب لياقة + أخصائي تغذية ١٢+ سنة. برامج تناسب السعودية.\n\n# المهمة\n"+t+"\n\n# السياق\nمناخ حار. أكل سعودي غني بالسعرات. رمضان يتطلب تعديل.\n\n# خطوات التفكير\n١. الهدف (خسارة/بناء/لياقة)؟\n٢. المستوى الحالي؟\n٣. الوقت المتاح؟\n٤. إصابات أو قيود؟\n\n# المتطلبات\n- برنامج أسبوعي (تمرين+تكرارات+راحة) + خطة غذائية + معايير تقدم\n\n# تنويه: استشر طبيبك أولاً.\n\n# ما لا يجب فعله\n- لا حميات قاسية. لا وعود غير واقعية.\n\n# التنسيق\nبرنامج أسبوعي بجدول + خطة غذائية.";},en:function(t){return "# Role\nCertified fitness coach & nutritionist, 12+ years.\n\n# Task\n"+t+"\n\n# Think\nGoal → Level → Time → Limitations\n\n# Requirements\n- Weekly plan (exercises/sets/reps) + Meal plan + Progress metrics\n\n# Disclaimer: Consult doctor first.\n\n# Constraints\n- No crash diets. No dangerous exercises.\n\n# Output\nWeekly schedule + Meal plan.";}},
-realestate:{ar:function(t){return "# الدور\nخبير عقاري ١٥+ سنة بالسعودية. يفهم سكني وبرامج الدعم.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. شراء/استثمار/إيجار؟\n٢. الميزانية (نقد+تمويل)؟\n٣. الموقع ولماذا؟\n٤. العائد أو التكلفة الشهرية؟\n\n# المتطلبات\n- تحليل سوق + مقارنة خيارات + تكلفة كاملة + تمويل + توقعات\n\n# ما لا يجب فعله\n- لا تتجاهل رسوم مخفية. لا وعود ارتفاع.\n\n# التنسيق\nتحليل مقارن + حاسبة تمويل + توصية.";},en:function(t){return "# Role\nReal estate expert, 15+ years, Saudi market.\n\n# Task\n"+t+"\n\n# Think\nBuy/invest/rent → Budget → Location → Return\n\n# Requirements\n- Market analysis + Options + Full costs + Financing\n\n# Constraints\n- No hidden fees ignored. No price guarantees.\n\n# Output\nComparison tables + Financing calc + Recommendation.";}},
-legal:{ar:function(t){return "# الدور\nمستشار قانوني ١٥+ سنة بالأنظمة السعودية.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. المسألة القانونية؟\n٢. الأنظمة المطبقة؟\n٣. الخيارات القانونية؟\n٤. المخاطر؟\n\n# المتطلبات\n- شرح مبسط + خطوات مرقمة + مستندات + تكاليف + مخاطر\n\n# تنويه: إرشاد عام وليس استشارة قانونية.\n\n# ما لا يجب فعله\n- لا أحكام نهائية. لا تتجاهل التحديثات.\n\n# التنسيق\nشرح + خطوات + مستندات + تكاليف.";},en:function(t){return "# Role\nLegal consultant, 15+ years, Saudi regulations.\n\n# Task\n"+t+"\n\n# Think\nIssue → Regulations → Options → Risks\n\n# Requirements\n- Explanation + Steps + Documents + Costs + Risks\n\n# Disclaimer: General guidance, not legal advice.\n\n# Output\nSimple explanation + Numbered steps + Costs.";}},
-travel:{ar:function(t){return "# الدور\nخبير سفر ١٢+ سنة. ٦٠+ دولة. أفضل قيمة للمسافر السعودي.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. الوجهة والمدة والميزانية؟\n٢. نوع الرحلة؟\n٣. الأولويات؟\n٤. التأشيرة للجواز السعودي؟\n\n# المتطلبات\n- برنامج يومي + حجوزات مقترحة + أكل حلال + تطبيقات + ميزانية\n\n# ما لا يجب فعله\n- لا سياحي فقط — أضف أماكن محلية. لا تتجاهل التأشيرة.\n\n# التنسيق\nبرنامج يومي بجدول + ميزانية + نصائح.";},en:function(t){return "# Role\nTravel expert, 60+ countries, best-value planning.\n\n# Task\n"+t+"\n\n# Think\nDestination/duration/budget → Trip type → Priorities → Visa\n\n# Requirements\n- Daily itinerary + Bookings + Local gems + Budget\n\n# Constraints\n- Don't ignore visa requirements.\n\n# Output\nDaily schedule + Budget + Tips.";}},
-translate:{ar:function(t){return "# الدور\nمترجم محترف ١٥+ سنة. يترجم المعنى وليس الكلمات.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. سياق النص؟\n٢. الجمهور المستهدف؟\n٣. مستوى الرسمية؟\n٤. مصطلحات متخصصة؟\n\n# المتطلبات\n- ترجمة دقيقة + تكييف ثقافي + نبرة محفوظة + قائمة مصطلحات\n\n# ما لا يجب فعله\n- لا حرفية. لا تتجاهل السياق الثقافي.\n\n# التنسيق\nالنص المترجم + مسرد المصطلحات.";},en:function(t){return "# Role\nCertified translator, 15+ years. Translates meaning, not words.\n\n# Task\n"+t+"\n\n# Think\nContext → Audience → Formality → Specialized terms\n\n# Requirements\n- Accurate translation + Cultural adaptation + Tone preservation + Glossary\n\n# Constraints\n- No word-for-word. Don't ignore cultural context.\n\n# Output\nTranslated text + Glossary.";}},
-social:{ar:function(t){return "# الدور\nخبير سوشال ميديا ١٠+ سنة. حسابات ١٠٠K+ متابع. يفهم كل منصة بالسعودية.\n\n# المهمة\n"+t+"\n\n# السياق\nتويتر للنقاش. سناب للحياة. إنستقرام للبصريات. تيك توك للاكتشاف.\n\n# خطوات التفكير\n١. الهدف (متابعين/تفاعل/مبيعات)؟\n٢. المنصة الأنسب؟\n٣. نوع المحتوى؟\n٤. التكرار والتوقيت؟\n\n# المتطلبات\n- استراتيجية + بايو + خطة أسبوعية + ٥ أفكار فيروسية + هاشتاقات\n\n# ما لا يجب فعله\n- لا نفس المحتوى لكل منصة. لا شراء متابعين.\n\n# التنسيق\nاستراتيجية + بايو + خطة + أفكار.";},en:function(t){return "# Role\nSocial media expert, 10+ years, 100K+ follower accounts.\n\n# Task\n"+t+"\n\n# Think\nGoal → Best platform → Content type → Frequency\n\n# Requirements\n- Strategy + Bio + Weekly plan + 5 viral ideas + Hashtags\n\n# Constraints\n- Don't cross-post. Never buy followers.\n\n# Output\nStrategy + Bio + Plan + Ideas.";}},
-general:{ar:function(t){return "# الدور\nخبير عالمي. عملي، مباشر، بدون حشو.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. الهدف الحقيقي؟\n٢. أهم ٣ نقاط؟\n٣. الأخطاء الشائعة؟\n٤. أول خطوة الحين؟\n\n# المتطلبات\n- شامل مختصر + أمثلة + ترتيب بالأهمية\n- أضف \"أخطاء شائعة\" + \"خطوتك القادمة\"\n\n# ما لا يجب فعله\n- لا تكرار. لا عبارات عامة. لا مقدمات.\n\n# التنسيق\nإجابة مباشرة + عناوين + أمثلة + خطوة عملية.";},en:function(t){return "# Role\nWorld-class expert. Practical, direct, zero fluff.\n\n# Task\n"+t+"\n\n# Step-by-Step\n1. Real goal? 2. Top 3 points? 3. Common mistakes? 4. First step now?\n\n# Requirements\n- Concise + Examples + Priority order + \"Common Mistakes\" + \"Next Step\"\n\n# Constraints\n- No repetition. No filler. No intros.\n\n# Output\nDirect answer + Subheadings + Examples + Actionable step.";}}
+website:{
+ar:function(t){return "# الدور والخبرة\nأنت مطور ويب أول (Senior Full-Stack Developer) ومصمم UX/UI في وكالة رقمية رائدة. لديك ١٥+ سنة خبرة في بناء مواقع حققت معدلات تحويل أعلى من ٥٪. عملت مع علامات تجارية كبرى وتفهم سيكولوجية المستخدم العربي.\n\n# المهمة\n"+t+"\n\n# السياق\nالموقع يستهدف السوق العربي/السعودي. المستخدم يتصفح غالباً من الجوال. يجب أن يحقق الموقع هدف واحد واضح خلال أول ٥ ثوانٍ من الزيارة.\n\n# خطوات التنفيذ (فكّر خطوة بخطوة)\n١. ابدأ بتحليل: مَن الزائر المستهدف؟ ما مشكلته؟ ما الحل الذي نقدمه؟\n٢. صمم هيكل الصفحة (wireframe) قبل الكود\n٣. اكتب النصوص التسويقية أولاً ثم ابنِ حولها\n٤. نفّذ الكود بالترتيب: HTML → CSS → JS\n\n# المتطلبات التقنية\n- HTML5 دلالي (semantic) + CSS حديث (Grid/Flexbox) + JS خفيف\n- Mobile-first: الجوال أولاً ثم سطح المكتب\n- سرعة تحميل أقل من ٣ ثوانٍ\n- أزرار CTA بارزة بألوان متباينة\n- تأثيرات حركية خفيفة (CSS فقط)\n- متوافق مع RTL للعربية\n\n# المتطلبات التسويقية\n- عنوان رئيسي يشد الانتباه خلال ٣ ثوانٍ\n- عرض قيمة واضح في جملة واحدة\n- أقسام: Hero → المشكلة → الحل → المميزات → شهادات → CTA → فوتر\n\n# ما لا يجب فعله\n- لا تستخدم Lorem ipsum — اكتب نصوص حقيقية مقنعة\n- لا تستخدم أكثر من ٣ ألوان + لون واحد للـ CTA\n- لا تستخدم خطوط أكثر من اثنين\n- لا تجعل أي قسم يحتاج سكرول أفقي على الجوال\n\n# التنسيق المطلوب\nقدم الكود في ملف HTML واحد كامل وجاهز للتشغيل. أضف تعليقات توضيحية لكل قسم.";},
+en:function(t){return "# Role & Expertise\nYou are a Senior Full-Stack Developer and UX/UI Designer at a top digital agency. 15+ years building websites with 5%+ conversion rates. Deep understanding of user psychology.\n\n# Task\n"+t+"\n\n# Context\nThe website must achieve ONE clear goal within the first 5 seconds. Users primarily browse on mobile.\n\n# Step-by-Step Approach (Think through each step)\n1. Analyze: Who is the target visitor? What's their problem? What solution do we offer?\n2. Design page structure (wireframe) before coding\n3. Write marketing copy first, then build around it\n4. Implement: HTML → CSS → JS\n\n# Technical Requirements\n- Semantic HTML5 + Modern CSS (Grid/Flexbox) + Minimal JS\n- Mobile-first responsive design\n- Load time under 3 seconds\n- Prominent CTA buttons with contrasting colors\n- Subtle CSS-only animations\n\n# Marketing Requirements\n- Headline that captures attention in 3 seconds\n- Clear value proposition in one sentence\n- Sections: Hero → Problem → Solution → Features → Testimonials → CTA → Footer\n\n# Constraints\n- NO Lorem ipsum — write real, persuasive copy\n- NO more than 3 colors + 1 CTA color\n- NO more than 2 font families\n\n# Output Format\nSingle complete HTML file ready to run with comments.";}
+},
+app:{
+ar:function(t){return "# الدور والخبرة\nأنت مهندس تطبيقات أول (Lead Mobile Engineer) بنيت +١٠ تطبيقات وصلت لأكثر من مليون تحميل. متخصص في تجربة المستخدم للتطبيقات العربية.\n\n# المهمة\n"+t+"\n\n# السياق\nالتطبيق يستهدف المستخدم العربي/السعودي. يجب أن يكون بسيطاً بحيث يفهمه المستخدم بدون شرح. المنافسة عالية.\n\n# خطوات التفكير (فكّر خطوة بخطوة)\n١. حدد المشكلة الأساسية في جملة واحدة\n٢. ارسم رحلة المستخدم من أول فتح حتى تحقيق الهدف\n٣. صمم أقل عدد شاشات ممكن (البساطة = النجاح)\n٤. حدد التقنية المناسبة بناءً على الميزانية والوقت\n\n# المتطلبات التقنية\n- اقترح Stack تقني مع تبرير (React Native / Flutter / SwiftUI)\n- هيكل قاعدة البيانات (Schema) مع العلاقات\n- REST API endpoints الأساسية\n- نظام مصادقة آمن (OAuth2 / JWT)\n- خطة للإشعارات (Push Notifications)\n\n# المتطلبات التصميمية\n- Onboarding من ٣ خطوات كحد أقصى\n- Loading + Empty + Error states لكل شاشة\n- دعم الوضع الداكن + RTL\n\n# ما لا يجب فعله\n- لا تقترح تقنيات بدون تبرير واضح\n- لا تصمم أكثر من ٧ شاشات في MVP\n\n# التنسيق المطلوب\n١. نظرة عامة\n٢. خريطة الشاشات\n٣. قاعدة البيانات\n٤. API Endpoints\n٥. خطة: MVP (أسبوعين) → V1 (شهر) → V2 (٣ أشهر)\n٦. كود الشاشة الرئيسية";},
+en:function(t){return "# Role & Expertise\nYou are a Lead Mobile Engineer who built 10+ apps with 1M+ downloads.\n\n# Task\n"+t+"\n\n# Context\nApp must be usable without instructions. Must do ONE thing better than everyone.\n\n# Step-by-Step Thinking\n1. Define core problem in one sentence\n2. Map user journey from first open to goal\n3. Minimum screens possible\n4. Choose tech based on budget and timeline\n\n# Technical Requirements\n- Tech stack with justification\n- Database schema with relationships\n- Core API endpoints\n- Secure auth (OAuth2/JWT)\n- Push notification plan\n\n# Design Requirements\n- Max 3-step onboarding\n- Loading/Empty/Error states\n- Dark mode + RTL support\n\n# Constraints\n- NO tech without justification\n- NO more than 7 MVP screens\n\n# Output: Overview → Screen map → Schema → API → Phased plan → Main screen code";}
+},
+marketing:{
+ar:function(t){return "# الدور والخبرة\nأنت مدير تسويق رقمي (CMO) بخبرة ١٥+ سنة في السوق السعودي والخليجي. متخصص في نمو المشاريع الناشئة من صفر إلى أول ١٠٠٠ عميل.\n\n# المهمة\n"+t+"\n\n# السياق\nالسوق السعودي. الجمهور يستخدم: تويتر (X)، سناب شات، إنستقرام، تيك توك. الميزانية محدودة.\n\n# خطوات التفكير (فكّر خطوة بخطوة)\n١. مَن العميل المثالي؟ اكتب Persona بالتفصيل\n٢. ما المشكلة التي نحلها؟ ولماذا يختارنا عن المنافسين؟\n٣. أين يتواجد هذا العميل رقمياً؟ حدد القنوات بالأولوية\n٤. ما الرسالة الأساسية؟ (جملة واحدة)\n\n# المتطلبات\n- تحليل الجمهور: العمر، الجنس، المدينة، الاهتمامات، نقاط الألم\n- خريطة رحلة العميل: الوعي → الاهتمام → الرغبة → الشراء → الولاء\n- استراتيجية لكل قناة (ما ننشر + كم مرة + أي وقت)\n- خطة محتوى ٣٠ يوم مفصلة\n- ميزانية مقسمة: إعلانات / محتوى / مؤثرين\n- KPIs واضحة: CAC، ROAS، CTR، معدل التحويل\n- ٣ أفكار حملات إبداعية تناسب الثقافة السعودية\n\n# ما لا يجب فعله\n- لا تقترح استراتيجيات عامة بدون أرقام\n- لا تقترح كل القنوات — ركّز على ٢-٣ الأكثر تأثيراً\n- لا تنسخ استراتيجيات غربية بدون تكييف\n\n# التنسيق المطلوب\nجدول منظم لكل قناة: الهدف، نوع المحتوى، التكرار، الميزانية، KPI. أضف تقويم محتوى أسبوعي.";},
+en:function(t){return "# Role: CMO with 15+ years scaling startups 0→1000 customers.\n\n# Task\n"+t+"\n\n# Context: Limited budget. Need max ROI. Find the ONE best channel first.\n\n# Think Step-by-Step\n1. Ideal customer persona\n2. Problem we solve + why us\n3. Where they hang out digitally\n4. Core message (one sentence)\n\n# Requirements\n- Audience analysis + customer journey map\n- Per-channel strategy with frequency and timing\n- 30-day content calendar\n- Budget breakdown\n- KPIs: CAC, ROAS, CTR\n- 3 viral campaign ideas\n\n# Constraints: NO generic strategies. Focus 2-3 channels. NO unlocalised strategies.\n\n# Output: Table per channel with goals, content, budget, KPIs.";}
+},
+email:{
+ar:function(t){return "# الدور والخبرة\nأنت خبير كتابة إقناعية (Senior Copywriter) نسب فتح إيميلاتك تتجاوز ٤٠٪. تفهم سيكولوجية الإقناع وتقنيات AIDA و PAS.\n\n# المهمة\n"+t+"\n\n# السياق\nالمستلم يتلقى +٥٠ إيميل يومياً. عندك ٣ ثوانٍ لإقناعه بالفتح، ١٠ ثوانٍ للقراءة، ٣٠ ثانية لاتخاذ إجراء.\n\n# خطوات التفكير\n١. ما هدف الإيميل بالتحديد؟ (إجراء واحد فقط)\n٢. ما الذي يهم المستلم؟ (ليس ما يهمنا)\n٣. ما العنوان الذي سيجعله يفتح وسط ٥٠ إيميل؟\n٤. ما أقصر طريق من الافتتاحية إلى الـ CTA؟\n\n# المتطلبات\n- ٣ عناوين بريد (أقل من ٧ كلمات) مع تبرير\n- افتتاحية تشد الانتباه (لا تبدأ بـ \"أتمنى أن يصلك إيميلي وأنت بخير\")\n- جسم الرسالة: مشكلة ← حل ← دليل ← CTA (أقل من ١٥٠ كلمة)\n- CTA واحد واضح\n- ٣ نسخ: رسمية، ودودة، مباشرة\n\n# ما لا يجب فعله\n- لا تبدأ بتحية طويلة\n- لا تضع أكثر من CTA واحد\n- لا تكتب أكثر من ١٥٠ كلمة\n- لا تستخدم كلمات سبام\n\n# التنسيق: لكل نسخة: العنوان → الافتتاحية → الجسم → CTA. جاهزة للنسخ.";},
+en:function(t){return "# Role: Senior Copywriter with 40%+ open rates. Expert in AIDA, PAS.\n\n# Task\n"+t+"\n\n# Context: Recipient gets 50+ emails daily. 3 sec to open, 10 sec to read, 30 sec to act.\n\n# Think Step-by-Step\n1. ONE goal for this email\n2. What recipient cares about\n3. Subject line that wins among 50 emails\n4. Shortest path from opening to CTA\n\n# Requirements\n- 3 subject lines (under 7 words) with justification\n- Strong opening (NEVER \"Hope this finds you well\")\n- Body: Problem → Solution → Proof → CTA (under 150 words)\n- ONE CTA only\n- 3 versions: Formal, Friendly, Direct\n\n# Constraints: No long intros. No multiple CTAs. No spam words.\n\n# Output: Subject → Opening → Body → CTA per version. Ready to paste.";}
+},
+business:{
+ar:function(t){return "# الدور والخبرة\nأنت مستشار أعمال على مستوى McKinsey/BCG. خبرة ٢٠ سنة في المشاريع الناشئة بالسعودية. ساعدت +٥٠ شركة. تفهم رؤية ٢٠٣٠.\n\n# المهمة\n"+t+"\n\n# السياق\nمشروع ناشئ بالسعودية. ميزانية محدودة. الهدف: إثبات Product-Market Fit أولاً.\n\n# خطوات التفكير (فكّر خطوة بخطوة)\n١. ما المشكلة الحقيقية؟ (وليست التي نتخيلها)\n٢. مَن سيدفع؟ ولماذا الآن؟\n٣. كيف نختبر بأقل تكلفة؟\n٤. ما أول ١٠٠ ريال ومن أين؟\n\n# المتطلبات\n- هل المشكلة حقيقية؟ هل الناس تدفع لحلها؟\n- حجم السوق: TAM → SAM → SOM\n- القيمة المقترحة: \"نساعد [مَن] على [ماذا] بدون [مشكلة]\"\n- Business Model Canvas كامل\n- تحليل ٣ منافسين: قوتهم وضعفهم وفرصتنا\n- نموذج الإيرادات\n- تكاليف شهرية واقعية\n- خطة ٩٠ يوم: بناء → اختبار → أول عملاء\n- أكبر ٥ مخاطر وخطة تخفيف\n\n# ما لا يجب فعله\n- لا أرقام خيالية\n- لا تقول \"لا يوجد منافسين\"\n- لا تفترض المنتج يبيع نفسه\n- لا تتجاهل التراخيص السعودية\n\n# التنسيق: خطة مرقمة. أرقام في جداول. ابدأ بملخص تنفيذي ٣ أسطر.";},
+en:function(t){return "# Role: McKinsey-level Consultant. 20 years, 50+ startups.\n\n# Task\n"+t+"\n\n# Context: Bootstrapped. Limited budget. Goal: Product-Market Fit first.\n\n# Think Step-by-Step\n1. What's the REAL problem?\n2. Who pays? Why now?\n3. How to test cheaply and fast?\n4. Where does the first $100 come from?\n\n# Requirements\n- Problem validation\n- Market sizing: TAM → SAM → SOM\n- Value prop in one sentence\n- Business Model Canvas\n- 3 competitor analysis\n- Revenue model\n- Realistic monthly costs\n- 90-day plan: Build → Test → First customers\n- Top 5 risks + mitigation\n\n# Constraints: No fantasy numbers. Never say no competitors. Don't ignore legal.\n\n# Output: Numbered plan with tables. Start with 3-line executive summary.";}
+},
+content:{
+ar:function(t){return "# الدور والخبرة\nأنت صانع محتوى متخصص في النمو الفيروسي. حققت ملايين المشاهدات. تفهم خوارزميات تويتر وإنستقرام وتيك توك وسناب شات في السوق السعودي.\n\n# المهمة\n"+t+"\n\n# السياق\nالمنافسة على الانتباه شرسة. عندك ١.٥ ثانية لإيقاف التمرير. المحتوى الناجح = Hook قوي + قيمة حقيقية + CTA واضح.\n\n# خطوات التفكير\n١. مَن سيقرأ هذا؟ (العمر، الاهتمام، المنصة)\n٢. ما الـ Hook الذي سيوقفه عن التمرير؟\n٣. ما القيمة الحقيقية؟ (معلومة، إلهام، حل)\n٤. ما الإجراء المطلوب؟ (متابعة، مشاركة، شراء)\n\n# المتطلبات\n- ٣ نسخ مختلفة:\n  • Hook مباشر: عبارة صادمة أو إحصائية\n  • قصة: حكاية شخصية قصيرة\n  • سؤال: يثير الفضول\n- كل نسخة: Hook (سطر) → المحتوى → CTA\n- ٥ هاشتاقات (٣ كبيرة + ٢ متخصصة)\n- أفضل وقت للنشر بتوقيت السعودية\n\n# ما لا يجب فعله\n- لا محتوى طويل ممل — كل جملة تستحق مكانها\n- لا لغة رسمية جامدة — اكتب كإنسان\n- لا أكثر من CTA واحد\n- لا مقدمات — ابدأ بالـ Hook\n\n# التنسيق: كل نسخة جاهزة للنسخ واللصق مباشرة.";},
+en:function(t){return "# Role: Viral content specialist with millions of views.\n\n# Task\n"+t+"\n\n# Context: 1.5 seconds to stop the scroll. Hook + Value + CTA.\n\n# Think Step-by-Step\n1. Who reads this? 2. What hook stops scrolling? 3. What value? 4. What action?\n\n# Requirements\n- 3 versions: Direct Hook / Story / Question\n- Each: Hook (one line) → Content → CTA\n- 5 hashtags (3 broad + 2 niche)\n- Best posting time\n\n# Constraints: No boring content. No formal language. No multiple CTAs. No intros.\n\n# Output: Each version ready to copy-paste directly.";}
+},
+design:{
+ar:function(t){return "# الدور والخبرة\nأنت مدير إبداعي أول (Creative Director) في وكالة حائزة على جوائز. ١٥+ سنة في هويات بصرية لعلامات عالمية وعربية.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. شخصية العلامة التجارية؟ (لو كانت شخص: كيف تتكلم؟ ما قيمها؟)\n٢. مَن الجمهور وما الانطباع المطلوب؟\n٣. ما المشاعر المطلوبة عند رؤية التصميم؟\n٤. ما يميزنا بصرياً عن المنافسين؟\n\n# المتطلبات\n- مفهوم التصميم: القصة والفلسفة\n- لوحة ألوان: ٤-٥ ألوان بـ HEX + نسبة استخدام + المعنى النفسي\n- خط عربي + إنجليزي + الأحجام (H1, H2, Body)\n- عناصر بصرية مميزة\n- أمثلة تطبيقية: بطاقة أعمال، موقع، سوشال ميديا\n- Do's & Don'ts\n\n# ما لا يجب فعله\n- لا ألوان بدون تبرير نفسي\n- لا أكثر من خطين\n\n# التنسيق: Brand Guidelines مصغرة. ابدأ بالقصة ثم التفاصيل التقنية.";},
+en:function(t){return "# Role: Award-winning Creative Director. 15+ years in brand identity.\n\n# Task\n"+t+"\n\n# Think: Brand personality → Audience → Emotions → Differentiation\n\n# Requirements\n- Design concept with philosophy\n- Color palette: 4-5 HEX codes + usage ratio + psychology\n- Typography: primary + secondary + sizes\n- Visual elements: patterns, icons, textures\n- Application examples\n- Do's & Don'ts\n\n# Constraints: No unjustified colors. Max 2 fonts.\n\n# Output: Mini Brand Guidelines. Story first, then specs.";}
+},
+data:{
+ar:function(t){return "# الدور والخبرة\nأنت محلل بيانات أول ومتخصص في الذكاء الاصطناعي. ١٢+ سنة في تحويل البيانات لقرارات تجارية.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير\n١. ما السؤال الذي نجيب عليه بالبيانات؟\n٢. ما البيانات المتاحة وما نحتاج جمعه؟\n٣. ما أبسط تحليل يعطي أكبر insight؟\n٤. ما القرار الذي سيتغير بناءً على النتائج؟\n\n# المتطلبات\n- تعريف واضح للسؤال التحليلي\n- مصادر البيانات (APIs, databases)\n- منهجية التحليل + الأدوات (Python/SQL/Excel)\n- Dashboard: أهم ٥ أرقام يومية\n- Insights: \"ماذا حصل\" + \"لماذا\" + \"ماذا نفعل\"\n- توصيات مرقمة مرتبطة ببيانات\n- كود Python/SQL جاهز\n\n# ما لا يجب فعله\n- لا بيانات بدون تفسير\n- لا أرقام بدون سياق\n- لا أكثر من ٥ مؤشرات\n\n# التنسيق: ملخص ٣ أسطر → تفاصيل → رسوم بيانية → توصيات مرقمة.";},
+en:function(t){return "# Role: Lead Data Analyst + AI specialist. 12+ years.\n\n# Task\n"+t+"\n\n# Think: What question? → What data? → Simplest analysis? → What decision changes?\n\n# Requirements\n- Clear question definition\n- Data sources\n- Methodology + tools\n- Top 5 daily dashboard metrics\n- Insights: what + why + what next\n- Numbered recommendations with data\n- Ready Python/SQL code\n\n# Constraints: No data without interpretation. No numbers without context. Max 5 KPIs.\n\n# Output: 3-line summary → Details → Charts → Numbered recommendations.";}
+},
+learning:{
+ar:function(t){return "# الدور والخبرة\nأنت معلم خبير (Master Educator) بخبرة ٢٠ سنة. فلسفتك: \"لو ما تقدر تشرحه لطفل ١٠ سنوات، أنت ما فهمته\". التعلم الحقيقي بالممارسة.\n\n# المهمة\n"+t+"\n\n# السياق\nمبتدئ بدون خلفية. يتعلم من جواله ١-٢ ساعة يومياً. يحتاج نتائج سريعة تحفزه.\n\n# خطوات التفكير\n١. أهم ٢٠٪ تعطي ٨٠٪ من النتائج (قاعدة باريتو)\n٢. أبسط مشروع عملي في أول يومين (تحفيز سريع)\n٣. الأخطاء الشائعة للمبتدئين\n٤. أفضل ترتيب — كل مفهوم يبني على السابق\n\n# المتطلبات\n- خارطة طريق من صفر إلى متقدم\n- مراحل:\n  • أسبوع ١-٢: الأساسيات → [مهمة بسيطة]\n  • أسبوع ٣-٤: متوسط → [مهمة متوسطة]\n  • شهر ٢-٣: متقدم → [مهمة حقيقية]\n- كل درس: شرح ٥ دقائق → مثال → تمرين → اختبار سريع\n- أمثلة واقعية لكل مفهوم\n- مصادر مجانية (يوتيوب، مواقع، تطبيقات)\n- مشروع تخرج نهائي\n\n# ما لا يجب فعله\n- لا نظري بدون تطبيق\n- لا مصطلحات بدون شرح\n- لا درس يتجاوز ١٠ دقائق\n\n# التنسيق: ابدأ بـ \"بعد إنهاء هذه الخطة ستكون قادراً على...\". خارطة طريق مرئية بجداول.";},
+en:function(t){return "# Role: Master Educator, 20 years. \"If you can't explain it to a 10-year-old, you don't understand it.\"\n\n# Task\n"+t+"\n\n# Context: Complete beginner. Phone learner. 1-2 hrs/day. Needs quick wins.\n\n# Think: 20% giving 80% results → Simplest project in 2 days → Common mistakes → Best order\n\n# Requirements\n- Zero to advanced roadmap\n- Phases: Week 1-2 basics → Week 3-4 intermediate → Month 2-3 advanced\n- Each lesson: 5-min explanation → Example → Exercise → Quiz\n- Real-life examples\n- Free resources per phase\n- Final capstone project\n\n# Constraints: No theory without practice. No jargon without explanation. Max 10-min lessons.\n\n# Output: Start with \"After this plan you'll be able to...\". Visual roadmap with tables.";}
+},
+code:{
+ar:function(t){return "# الدور والخبرة\nأنت مهندس برمجيات أول (Principal Engineer) على مستوى Google/Meta. ١٥+ سنة. تكتب كود نظيف كما لو أن شخصاً مجنوناً سيقرأه بعدك.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير (فكّر قبل ما تكتب سطر)\n١. ما المشكلة بالضبط؟ قسّمها لأجزاء صغيرة\n٢. ما أبسط حل يعمل؟ (لا تبني صاروخ إذا تحتاج دراجة)\n٣. ما الحالات الاستثنائية (edge cases)؟\n٤. كيف يتوسع مستقبلاً بدون إعادة كتابة؟\n\n# المتطلبات\n- Clean Code + SOLID principles\n- تسمية واضحة ومعبرة (لا x, y, temp)\n- دوال صغيرة: شيء واحد فقط (أقل من ٢٠ سطر)\n- Error Handling شامل\n- تعليقات ذكية: \"لماذا\" وليس \"ماذا\"\n- أمثلة استخدام\n- اختبار واحد على الأقل\n\n# البنية\n// ١. الإعدادات\n// ٢. الثوابت\n// ٣. الدوال المساعدة\n// ٤. المنطق الرئيسي\n// ٥. التصدير\n// ٦. الاختبارات\n\n# ما لا يجب فعله\n- لا تكرار (DRY)\n- لا تبني ما لا تحتاجه (YAGNI)\n- لا console.log للتصحيح\n- لا تتجاهل الأخطاء\n- لا دالة أطول من ٢٠ سطر\n\n# التنسيق: شرح الخطة ٣ أسطر → الكود كاملاً → مثال استخدام → اختبار.";},
+en:function(t){return "# Role: Principal Engineer, Google/Meta level. 15+ years. Clean code as if a psycho will maintain it.\n\n# Task\n"+t+"\n\n# Think Before Coding\n1. Exact problem? Break into parts\n2. Simplest working solution\n3. Edge cases that could break it\n4. How does it scale?\n\n# Requirements\n- Clean Code + SOLID\n- Expressive naming (no x, y, temp)\n- Small functions: ONE thing, under 20 lines\n- Comprehensive error handling\n- Smart comments: WHY not WHAT\n- Usage examples\n- At least one test\n\n# Structure: Imports → Constants → Helpers → Main logic → Export → Tests\n\n# Constraints: DRY. YAGNI. No console.log. No silent errors. No 20+ line functions.\n\n# Output: 3-line plan → Complete code → Usage example → Test.";}
+},
+video:{
+ar:function(t){return "# الدور والخبرة\nأنت كاتب سيناريو محترف (Senior Scriptwriter) متخصص في محتوى يوتيوب وتيك توك. أنتجت +٥٠٠ سكريبت حقق بعضها ملايين المشاهدات. تفهم خوارزميات المنصات وسيكولوجية المشاهد العربي.\n\n# المهمة\n"+t+"\n\n# السياق\nالمشاهد يقرر خلال ٥ ثوانٍ إذا سيكمل أو يغادر. كل كلمة تحسب. الهدف: watch time أعلى + تحويل لمشترك.\n\n# خطوات التفكير\n١. مَن المشاهد المثالي؟ (العمر، الاهتمام، مستوى المعرفة)\n٢. ما الـ Hook الذي يجعله لا يغادر أول ٥ ثوانٍ؟\n٣. ما الوعد الذي قطعناه؟ وكيف نفي به قبل النهاية؟\n٤. أين نضع Pattern Interrupts لمنع الملل؟\n\n# المتطلبات\n- العنوان: ٣ خيارات (كل عنوان أقل من ٦٠ حرف + Hook مدمج)\n- الـ Hook: أول ١٥ ثانية — سؤال أو صدمة أو وعد\n- Thumbnail concept: وصف الصورة المثالية\n- هيكل الفيديو:\n  • Hook (٠:٠٠–٠:١٥): الصدمة أو الوعد\n  • Intro سريع (٠:١٥–٠:٤٥): مَن أنت + لماذا يستمع\n  • Main Content: نقاط مرقمة مع Pattern Interrupts كل ٦٠ ثانية\n  • CTA وسط الفيديو (لايك + اشتراك)\n  • Outro: تلخيص + دعوة للفيديو التالي\n- سكريبت كامل بالكلام المنطوق\n- توقيت تقريبي لكل قسم\n\n# ما لا يجب فعله\n- لا مقدمات طويلة — ادخل الموضوع فوراً\n- لا مصطلحات صعبة بدون شرح\n- لا نهاية مفتوحة — اختم بـ CTA واضح\n- لا تكرار نفس الفكرة مرتين\n\n# التنسيق: العنوان → Thumbnail → Hook → السكريبت الكامل بتوقيتات → ملاحظات للمونتاج.";},
+en:function(t){return "# Role: Senior Scriptwriter. 500+ scripts with millions of views. Expert in YouTube/TikTok algorithms.\n\n# Task\n"+t+"\n\n# Context: Viewer decides in 5 seconds. Every word counts. Goal: max watch time + subscriber conversion.\n\n# Think Step-by-Step\n1. Ideal viewer: age, interest, knowledge level\n2. Hook that keeps them past 5 seconds\n3. Promise made — how do we deliver before the end?\n4. Where to add pattern interrupts to prevent drop-off\n\n# Requirements\n- Title: 3 options (under 60 chars, hook embedded)\n- Hook: first 15 seconds — question, shock, or promise\n- Thumbnail concept: describe ideal image\n- Video structure:\n  • Hook (0:00–0:15): shock or promise\n  • Quick intro (0:15–0:45): who you are + why listen\n  • Main content: numbered points + pattern interrupts every 60s\n  • Mid-roll CTA (like + subscribe)\n  • Outro: recap + next video call\n- Full spoken script with approximate timestamps\n\n# Constraints: No long intros. No jargon without explanation. No open ending. No repeated ideas.\n\n# Output: Title → Thumbnail → Hook → Full timestamped script → Editing notes.";}
+},
+general:{
+ar:function(t){return "# الدور والخبرة\nأنت خبير ومستشار عالمي. خبرة عميقة متعددة التخصصات. أسلوبك: عملي، مباشر، بدون حشو. كل جملة تضيف قيمة.\n\n# المهمة\n"+t+"\n\n# خطوات التفكير (فكّر خطوة بخطوة)\n١. ما الهدف الحقيقي؟ (ليس الظاهر — الحقيقي)\n٢. ما أهم ٣ نقاط يخرج بها القارئ؟\n٣. ما الأخطاء الشائعة في هذا الموضوع؟\n٤. ما أول خطوة ملموسة يمكن تنفيذها فوراً؟\n\n# المتطلبات\n- إجابة شاملة مختصرة — لا كلمة زائدة\n- ادعم كل نقطة بمثال عملي أو رقم\n- رتّب من الأهم للأقل أهمية\n- أضف \"أخطاء شائعة يجب تجنبها\"\n- اختم بـ \"خطوتك القادمة\" — إجراء واحد محدد\n\n# ما لا يجب فعله\n- لا تكرر نفس الفكرة بصياغات مختلفة\n- لا عبارات عامة مثل \"من المهم أن\"\n- لا مقدمات طويلة — ادخل مباشرة\n- لا نصائح بدون أمثلة\n\n# التنسيق: ابدأ بالإجابة مباشرة. عناوين فرعية واضحة. كل نقطة مع مثال. اختم بخطوة عملية.";},
+en:function(t){return "# Role: World-class expert consultant. Practical, direct, zero fluff.\n\n# Task\n"+t+"\n\n# Think Step-by-Step\n1. What's the REAL goal?\n2. Top 3 takeaways?\n3. Common mistakes?\n4. First concrete step?\n\n# Requirements\n- Concise but comprehensive\n- Every point with example or number\n- Most to least important order\n- \"Common Mistakes\" section\n- End with \"Your Next Step\"\n\n# Constraints: No repetition. No filler phrases. No long intros. No advice without examples.\n\n# Output: Direct answer. Clear subheadings. Examples. End with one actionable step.";}
+}
 };
 
-var cI="";
-function go(){
-  var v=inp.value.trim();if(!v)return;cI=v;
-  var c=dC(v),t=T[c.id]||T.general;
-  // USE SELECTED LANGUAGE for output
-  var p=outLang==="ar"?t.ar(v):t.en(v);
-  var wc=p.split(/\s+/).length;
-  document.getElementById("tC").textContent="📂 "+(outLang==="ar"?c.ar:c.en);
-  document.getElementById("tL").textContent="🌐 "+(outLang==="ar"?"عربي":"EN");
-  document.getElementById("tP").textContent="📝 "+wc+" "+(outLang==="ar"?"كلمة":"words");
-  document.getElementById("out").textContent=p;
-  document.getElementById("rC").className="rc show";
-  document.getElementById("cB").className="cpb";document.getElementById("cB").textContent="📋 نسخ";
-  document.getElementById("rU").className="rb";document.getElementById("rD").className="rb";
-  D.g++;sv();updS();
-  setTimeout(function(){document.getElementById("rC").scrollIntoView({behavior:"smooth",block:"start"});},100);
-}
-function cpP(){cTC(document.getElementById("out").textContent);var b=document.getElementById("cB");b.className="cpb cp";b.textContent="✅ تم!";setTimeout(function(){b.className="cpb";b.textContent="📋 نسخ";},2e3);ts("تم النسخ! ⚡");}
-function cTC(t){if(navigator.clipboard)navigator.clipboard.writeText(t);else{var e=document.createElement("textarea");e.value=t;document.body.appendChild(e);e.select();document.execCommand("copy");document.body.removeChild(e);}}
-function rate(t){if(t==="up"){document.getElementById("rU").className="rb vu";document.getElementById("rD").className="rb";D.l++;ts("شكراً! 👍");}else{document.getElementById("rD").className="rb vd";document.getElementById("rU").className="rb";D.d++;ts("شكراً! 🙏");}document.getElementById("rUC").textContent=D.l;document.getElementById("rDC").textContent=D.d;sv();updS();}
-function shTw(){var t="⚡ جربت FAHAD.AI v3.5\n\n٢٠ تصنيف ذكي + عربي/إنجليزي + ثيمات\n\nحوّل أي طلب لأمر خارق!\n\n"+URL2+"\n\n#FAHAD_AI #ذكاء_اصطناعي #ChatGPT #AI";window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(t),"_blank");D.s++;sv();updS();ts("شكراً! 🚀");}
-function shWa(){var t="⚡ FAHAD.AI v3.5\n\n٢٠ تصنيف ذكي + ثيمات + عربي/إنجليزي\n\nحوّل أي طلب لأمر خارق!\n\n"+URL2;window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");D.s++;sv();updS();ts("شكراً! 💚");}
-function shLn(){cTC(URL2);D.s++;sv();updS();ts("تم نسخ الرابط! 🔗");}
-function ts(m){var t=document.getElementById("toast");t.textContent=m;t.className="toast show";setTimeout(function(){t.className="toast";},2500);}
-function sv(){localStorage.setItem("fai35",JSON.stringify(D));}
-function updS(){document.getElementById("sG").textContent=D.g;document.getElementById("sS").textContent=D.s;document.getElementById("sL").textContent=D.l;document.getElementById("rUC").textContent=D.l;document.getElementById("rDC").textContent=D.d;}
-</script>
+var currentInput="";
+var currentPrompt="";
 
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function renderOutput(text){
+  return text.split("\n").map(function(line){
+    var e=esc(line);
+    if(/^# /.test(line)) return '<span class="oh">'+e+'</span>';
+    if(/^## /.test(line)) return '<span class="os">'+e+'</span>';
+    if(/^[١٢٣٤٥٦٧٨٩٠\d]+[\.،]\s/.test(line)) return '<span class="on">'+e+'</span>';
+    if(/^[-•]\s/.test(line)||/^  [-•]/.test(line)) return '<span class="od">'+e+'</span>';
+    if(line.trim()==="") return '';
+    return '<span class="ob">'+e+'</span>';
+  }).join("\n");
+}
+
+function generate(){
+  var v=inp.value.trim();
+  if(!v)return;
+  currentInput=v;
+  var lang=detectLang(v);
+  var cat=detectCat(v);
+  var isAr=lang==="ar";
+  var tmpl=T[cat.id]||T.general;
+  var prompt=isAr?tmpl.ar(v):tmpl.en(v);
+  currentPrompt=prompt;
+  document.getElementById("tagCat").textContent="📂 "+(isAr?cat.ar:cat.en);
+  document.getElementById("tagLang").textContent="🌐 "+(isAr?"عربي":"EN");
+  document.getElementById("output").innerHTML=renderOutput(prompt);
+  document.getElementById("resultCard").className="result-card show";
+  document.getElementById("copyBtn").className="copy-btn";
+  document.getElementById("copyBtn").textContent="📋 نسخ";
+  document.getElementById("rateUp").className="rate-btn";
+  document.getElementById("rateDown").className="rate-btn";
+  data.gen++;saveData();updateStats();
+  setTimeout(function(){document.getElementById("resultCard").scrollIntoView({behavior:"smooth",block:"start"});},100);
+}
+
+function copyPrompt(){
+  copyToClipboard(currentPrompt);
+  var btn=document.getElementById("copyBtn");
+  btn.className="copy-btn copied";btn.textContent="✅ تم!";
+  setTimeout(function(){btn.className="copy-btn";btn.textContent="📋 نسخ";},2000);
+  showToast("تم نسخ الأمر الخارق! ⚡");
+}
+
+function copyToClipboard(text){
+  if(navigator.clipboard){navigator.clipboard.writeText(text);}
+  else{var t=document.createElement("textarea");t.value=text;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t);}
+}
+
+function rate(type){
+  if(type==="up"){
+    document.getElementById("rateUp").className="rate-btn voted-up";
+    document.getElementById("rateDown").className="rate-btn";
+    data.likes++;showToast("شكراً لتقييمك! 👍");
+  }else{
+    document.getElementById("rateDown").className="rate-btn voted-down";
+    document.getElementById("rateUp").className="rate-btn";
+    data.dislikes++;showToast("شكراً — بنتحسن أكثر! 🙏");
+  }
+  document.getElementById("rateUpCount").textContent=data.likes;
+  document.getElementById("rateDownCount").textContent=data.dislikes;
+  saveData();updateStats();
+}
+
+function shareTwitter(){
+  var text="⚡ جربت أداة FAHAD.AI — تحوّل أي طلب بسيط إلى أمر خارق (Super Prompt) جاهز لـ ChatGPT و Claude\n\nكتبت: \""+currentInput.substring(0,40)+"\"\nوطلع لي أمر احترافي مفصل!\n\nجربها مجاناً 👇\n"+SITE_URL+"\n\n#FAHAD_AI #ذكاء_اصطناعي #ChatGPT #AI";
+  window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(text),"_blank");
+  data.shares++;saveData();updateStats();showToast("شكراً للمشاركة! 🚀");
+}
+
+function shareWhatsApp(){
+  var text="⚡ أداة مجانية خارقة!\n\nFAHAD.AI — تحوّل أي طلب بسيط إلى أمر احترافي (Super Prompt) تلصقه في ChatGPT أو Claude\n\nجربتها وكتبت: \""+currentInput.substring(0,40)+"\"\nوطلع لي أمر مفصل بالدور والمتطلبات!\n\nجربها مجاناً:\n"+SITE_URL;
+  window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
+  data.shares++;saveData();updateStats();showToast("شكراً للمشاركة! 💚");
+}
+
+function shareLink(){
+  copyToClipboard(SITE_URL);
+  data.shares++;saveData();updateStats();showToast("تم نسخ الرابط! 🔗");
+}
+
+function showToast(msg){
+  var t=document.getElementById("toast");t.textContent=msg;t.className="toast show";
+  setTimeout(function(){t.className="toast";},2500);
+}
+
+function saveData(){localStorage.setItem("fai_data",JSON.stringify(data));}
+function downloadPrompt(){
+  if(!currentPrompt)return;
+  var cat=detectCat(currentInput);
+  var lang=detectLang(currentInput);
+  var catName=lang==="ar"?cat.ar:cat.en;
+  var filename="super-prompt-"+catName.replace(/\s+/g,"-")+".txt";
+  var blob=new Blob([currentPrompt],{type:"text/plain;charset=utf-8"});
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast("تم تحميل الملف! ⬇");
+}
+function openFullscreen(){
+  document.getElementById("fsOutput").innerHTML=document.getElementById("output").innerHTML;
+  document.getElementById("fsOverlay").className="fullscreen-overlay open";
+  document.body.style.overflow="hidden";
+}
+function closeFullscreen(){
+  document.getElementById("fsOverlay").className="fullscreen-overlay";
+  document.body.style.overflow="";
+}
+function closeOnBg(e){if(e.target===document.getElementById("fsOverlay"))closeFullscreen();}
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeFullscreen();});
+
+// ── THEMES ──
+var THEMES={
+  gold:  {label:"ذهبي",   color:"#fbbf24",ar:251,ag:191,ab:36, a1:"#fbbf24",a2:"#f59e0b",a3:"#d97706",al:"#fcd34d"},
+  purple:{label:"بنفسجي", color:"#a78bfa",ar:167,ag:139,ab:250,a1:"#a78bfa",a2:"#8b5cf6",a3:"#7c3aed",al:"#c4b5fd"},
+  blue:  {label:"أزرق",   color:"#60a5fa",ar:96, ag:165,ab:250,a1:"#60a5fa",a2:"#3b82f6",a3:"#2563eb",al:"#93c5fd"},
+  green: {label:"أخضر",   color:"#34d399",ar:52, ag:211,ab:153,a1:"#34d399",a2:"#10b981",a3:"#059669",al:"#6ee7b7"},
+  rose:  {label:"وردي",   color:"#fb7185",ar:251,ag:113,ab:133,a1:"#fb7185",a2:"#f43f5e",a3:"#e11d48",al:"#fda4af"}
+};
+var activeTheme=localStorage.getItem("fai_theme")||"gold";
+var activeMode=localStorage.getItem("fai_mode")||"dark";
+function applyMode(m){
+  activeMode=m;
+  if(m==="light"){document.documentElement.setAttribute("data-mode","light");document.getElementById("modeBtn").textContent="☀️";}
+  else{document.documentElement.removeAttribute("data-mode");document.getElementById("modeBtn").textContent="🌙";}
+  localStorage.setItem("fai_mode",m);
+}
+function toggleMode(){applyMode(activeMode==="dark"?"light":"dark");showToast(activeMode==="light"?"وضع فاتح ☀️":"وضع داكن 🌙");}
+applyMode(activeMode);
+function applyTheme(id){
+  var t=THEMES[id]||THEMES.gold;
+  var r=document.documentElement;
+  r.style.setProperty("--ar",t.ar);r.style.setProperty("--ag",t.ag);r.style.setProperty("--ab",t.ab);
+  r.style.setProperty("--a1",t.a1);r.style.setProperty("--a2",t.a2);r.style.setProperty("--a3",t.a3);r.style.setProperty("--al",t.al);
+  activeTheme=id;localStorage.setItem("fai_theme",id);
+  document.querySelectorAll(".theme-dot").forEach(function(d){d.classList.toggle("active",d.dataset.theme===id);});
+}
+var sw=document.getElementById("themeSwitcher");
+Object.keys(THEMES).forEach(function(id){
+  var d=document.createElement("div");
+  d.className="theme-dot"+(id===activeTheme?" active":"");
+  d.dataset.theme=id;d.title=THEMES[id].label;
+  d.style.background=THEMES[id].color;
+  d.onclick=function(){applyTheme(id);showToast("ثيم "+THEMES[id].label+" ✨");};
+  sw.appendChild(d);
+});
+applyTheme(activeTheme);
+
+function updateStats(){
+  document.getElementById("statGenerated").textContent=data.gen;
+  document.getElementById("statShared").textContent=data.shares;
+  document.getElementById("statLikes").textContent=data.likes;
+  document.getElementById("rateUpCount").textContent=data.likes;
+  document.getElementById("rateDownCount").textContent=data.dislikes;
+}
+</script>
+<div class="fullscreen-overlay" id="fsOverlay" onclick="closeOnBg(event)">
+  <div class="fullscreen-box">
+    <div class="fullscreen-header">
+      <div class="fullscreen-title"><span>🚀</span> الأمر الخارق</div>
+      <button class="fullscreen-close" onclick="closeFullscreen()">✕</button>
+    </div>
+    <div class="fullscreen-output" id="fsOutput"></div>
+    <div class="fullscreen-footer">
+      <button class="copy-btn" onclick="copyPrompt();showToast('تم نسخ الأمر الخارق! ⚡')">📋 نسخ</button>
+      <button class="share-btn share-twitter" style="max-width:120px;padding:10px 0;font-size:12px;border-radius:10px" onclick="shareTwitter()">𝕏 تويتر</button>
+      <button class="share-btn share-whatsapp" style="max-width:120px;padding:10px 0;font-size:12px;border-radius:10px" onclick="shareWhatsApp()">💬 واتساب</button>
+      <button class="expand-btn" onclick="downloadPrompt()">⬇ تحميل</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
